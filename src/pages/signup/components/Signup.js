@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { Link } from "react-router-dom"
+import { auth } from "../../../firebase/firebase-config";
 import { 
     createUserWithEmailAndPassword,
     onAuthStateChanged,
     signOut
 } from "firebase/auth";
-import { auth } from "../../../firebase/firebase-config";
 
 export default function Signup() {
     const [email, setEmail] = useState("");
@@ -18,8 +19,6 @@ export default function Signup() {
 
     const signup = async (e) => {
         e.preventDefault();
-
-        console.log(password === confirm)
 
         if (password === confirm) {
             try {
@@ -89,7 +88,7 @@ export default function Signup() {
                     </div>
                     <div>
                         <p>
-                            Already have an account? <span>Log In</span> 
+                            Already have an account? <Link to="/">Log In</Link> 
                         </p>
                     </div>
                 </div>
