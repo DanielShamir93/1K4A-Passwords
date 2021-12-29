@@ -6,6 +6,8 @@ import {
     onAuthStateChanged,
     signOut
 } from "firebase/auth";
+import PasswordInput from '../../../mui.components/PasswordInput.components';
+import TextFieldInput from '../../../mui.components/TextFieldInput.component';
 
 export default function Signup() {
     const [email, setEmail] = useState("");
@@ -48,36 +50,27 @@ export default function Signup() {
                 <h2>User Logged In: {user?.email}</h2>
                 <div className="user-inputs">
                     <div className="email">
-                        <label htmlFor="email">Email: </label>
-                        <input 
-                            type="email"
-                            id="email"
-                            value={email}
+                        <TextFieldInput 
+                            label="Email"
                             onChange={(e) => {
                                 setEmail(e.target.value);
-                            }}    
+                            }}  
                         />
                     </div>
                     <div className="password">
-                        <label htmlFor="password">Password: </label>
-                        <input 
-                            type="password" 
-                            id="password"
-                            value={password}
+                        <PasswordInput
+                            label="Password"
                             onChange={(e) => {
                                 setPassword(e.target.value);
-                            }} 
+                            }}  
                         />
                     </div>
                     <div className="confirm">
-                        <label htmlFor="confirm">Confirm: </label>
-                        <input 
-                            type="password" 
-                            id="confirm"
-                            value={confirm}
+                        <PasswordInput
+                            label="Confirm"
                             onChange={(e) => {
                                 setConfirm(e.target.value);
-                            }} 
+                            }}  
                         />
                     </div>
                 </div>
