@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom"
 import { auth } from "../../../firebase/firebase-config";
 import { 
@@ -6,8 +6,10 @@ import {
     onAuthStateChanged,
     signOut
 } from "firebase/auth";
+import TextField from '@mui/material/TextField';
 import PasswordInput from '../../../mui.components/PasswordInput.components';
 import TextFieldInput from '../../../mui.components/TextFieldInput.component';
+
 
 export default function Signup() {
     const [email, setEmail] = useState("");
@@ -50,27 +52,18 @@ export default function Signup() {
                 <h2>User Logged In: {user?.email}</h2>
                 <div className="user-inputs">
                     <div className="email">
-                        <TextFieldInput 
+                        <TextFieldInput
                             label="Email"
-                            onChange={(e) => {
-                                setEmail(e.target.value);
-                            }}  
                         />
                     </div>
                     <div className="password">
                         <PasswordInput
                             label="Password"
-                            onChange={(e) => {
-                                setPassword(e.target.value);
-                            }}  
                         />
                     </div>
                     <div className="confirm">
                         <PasswordInput
                             label="Confirm"
-                            onChange={(e) => {
-                                setConfirm(e.target.value);
-                            }}  
                         />
                     </div>
                 </div>

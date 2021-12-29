@@ -1,18 +1,23 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import * as React from "react";
+import FormControl from "@mui/material/FormControl";
+import TextField from "@mui/material/TextField";
 
-export default function FormPropsTextFields(props) {
+export default function TextFieldInput(props) {
+  const [values, setValues] = React.useState({
+    text: "",
+  });
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
   return (
-    <Box
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <TextField id="outlined-search" label={props.label} type="search" />
-    </Box>
+    <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+      <TextField 
+        label={props.label} 
+        onChange={handleChange('text')}
+        value={values.text}
+      />
+    </FormControl>
   );
 }
