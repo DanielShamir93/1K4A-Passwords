@@ -1,3 +1,6 @@
-const SET_TEXT = "SET_TEXT";
+const SET_EMAIL = "SET_EMAIL";
+const SET_PASSWORD = "SET_PASSWORD";
+const SET_CONFIRM = "SET_CONFIRM";
+const IS_AUTH = "IS_AUTH";
 
-export { SET_TEXT };
+export { SET_EMAIL, SET_PASSWORD, SET_CONFIRM, IS_AUTH };

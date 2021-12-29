@@ -1,16 +1,15 @@
 import './styles/App.css';
-import Signup from './pages/signup/components/Signup';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Signup from './pages/signup/components/Signup.component';
+import Home from './pages/home/components/Home.component';
+import ProtectedRoute from './components/ProtectedRoute.component';
 
 function App() {
   return (
-      <BrowserRouter>
-        <div className="App">
-          <Switch>
-            <Route path="/" exact component={Signup} />
-          </Switch>
-        </div>
-      </BrowserRouter>
+      <Router>
+        <Route path="/" exact component={Signup} />
+        <ProtectedRoute path="/home" component={Home} />
+      </Router>
   );
 }
 

@@ -1,0 +1,28 @@
+import * as React from "react";
+import FormControl from "@mui/material/FormControl";
+import TextField from "@mui/material/TextField";
+import { useDispatch, useSelector } from 'react-redux';
+import { setEmailAction } from '../../store/actions/actions';
+
+export default function TextFieldInput(props) {
+  const dispatch = useDispatch();
+  const statesObject = useSelector((state) => {
+    return {
+        email: state.email, 
+    };
+  });
+
+  const handleChange = (e) =>  {
+    dispatch(setEmailAction(e.target.value));
+  };
+
+  return (
+    <FormControl sx={{m: 1, width: '50vw', maxWidth: '500px' }} variant="outlined">
+      <TextField 
+        label={props.label} 
+        onChange={(e) => {handleChange(e)}}
+        value={statesObject.email}
+      />
+    </FormControl>
+  );
+}
