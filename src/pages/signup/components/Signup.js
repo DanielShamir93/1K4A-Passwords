@@ -1,12 +1,12 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom"
+
 import { auth } from "../../../firebase/firebase-config";
 import { 
     createUserWithEmailAndPassword,
     onAuthStateChanged,
     signOut
 } from "firebase/auth";
-import TextField from '@mui/material/TextField';
 import PasswordInput from '../../../mui.components/PasswordInput.components';
 import TextFieldInput from '../../../mui.components/TextFieldInput.component';
 
@@ -22,8 +22,6 @@ export default function Signup() {
     });
 
     const signup = async (e) => {
-        e.preventDefault();
-
         if (password === confirm) {
             try {
                 const user = await createUserWithEmailAndPassword(auth, email, password);
