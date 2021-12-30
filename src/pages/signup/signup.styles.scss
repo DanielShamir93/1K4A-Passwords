@@ -1,6 +1,6 @@
 .Signup {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     height: 100vh;
     width: 45vw;
     background: pink;
@@ -21,7 +21,7 @@
         }
     
         .signup-box {
-            height: 40vh;
+            height: 30vh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -36,7 +36,7 @@
         }
 
         .to-login {
-            margin-top: 20px;
+            margin-top: 80px;
         }
     }
 }

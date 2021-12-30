@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom"
 import { auth } from "../../../firebase/firebase-config";
+import Box from '@mui/material/Box';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import PasswordInput from '../../../components/mui.components/PasswordInput.components';
 import TextFieldInput from '../../../components/mui.components/TextFieldInput.component';
@@ -51,21 +52,23 @@ export default function Signup() {
                 <p className="signup-comment">{comment}</p>
                 <div className="signup-box">
                     <div className="signup-box-inputs">
-                        <div className="email">
-                            <TextFieldInput
-                                label="email"
-                            />
-                        </div>
-                        <div className="password">
-                            <PasswordInput
-                                label="password"
-                            />
-                        </div>
-                        <div className="confirm">
-                            <PasswordInput
-                                label="confirm"
-                            />
-                        </div>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', height: 300}}>
+                            <div className="email">
+                                <TextFieldInput
+                                    label="email"
+                                />
+                            </div>
+                            <div className="password">
+                                <PasswordInput
+                                    label="password"
+                                />
+                            </div>
+                            <div className="confirm">
+                                <PasswordInput
+                                    label="confirm"
+                                />
+                            </div>
+                        </Box>
                     </div>
                     <BasicButton 
                     label="submit"

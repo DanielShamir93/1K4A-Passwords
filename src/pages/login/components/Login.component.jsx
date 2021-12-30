@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 import { auth } from "../../../firebase/firebase-config";
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import PasswordInput from '../../../components/mui.components/PasswordInput.components';
 import TextFieldInput from '../../../components/mui.components/TextFieldInput.component';
@@ -48,22 +50,32 @@ export default function Login() {
                 <p className="login-comment">{comment}</p>
                 <div className="login-box">
                     <div className="login-box-inputs">
-                        <div className="email">
-                            <TextFieldInput
-                                label="email"
-                            />
-                        </div>
-                        <div className="password">
-                            <PasswordInput
-                                label="password"
-                            />
-                        </div>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', height: 200}}>
+                            <div className="email">
+                                <TextFieldInput
+                                    label="email"
+                                />
+                            </div>
+                            <div className="password">
+                                <PasswordInput
+                                    label="password"
+                                />
+                            </div>
+                        </Box>
                     </div>
-                    <BasicButton 
-                        label="login"
-                        variant="contained"
-                        cb={login}
-                    />
+                    <Stack direction="row" spacing={2}>
+                        <BasicButton 
+                            label="login"
+                            variant="contained"
+                            cb={login}
+                        />
+                        <Link to="/home">
+                            <BasicButton 
+                                label="home"
+                                variant="outlined"
+                            />
+                        </Link>
+                    </Stack>
                 </div>
             </div>
         </div>
