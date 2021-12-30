@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom"
 import { auth } from "../../../firebase/firebase-config";
-import { createUserWithEmailAndPassword } from "firebase/auth"; //onAuthStateChanged
+import { signInWithEmailAndPassword } from "firebase/auth"; //onAuthStateChanged
 import PasswordInput from '../../../components/mui.components/PasswordInput.components';
 import TextFieldInput from '../../../components/mui.components/TextFieldInput.component';
 import { useSelector } from 'react-redux';
 import BasicButton from '../../../components/mui.components/BasicButton.component';
-import UnderlineLink from '../../../components/mui.components/UnderlineLink.component';
-import '../signup.styles.scss';
+import '../login.styles.scss';
 
-export default function Signup() {
+export default function Login() {
     const [comment, setComment] = useState('');
     const history = useHistory();
     const statesObject = useSelector((state) => {
@@ -25,10 +24,10 @@ export default function Signup() {
     //     setUser(currentUser);
     // });
 
-    const signup = async () => {
+    const login = async () => {
         try {
             isValidInput();
-            const user = await createUserWithEmailAndPassword(auth, statesObject.email, statesObject.password);
+            const user = await signInWithEmailAndPassword(auth, statesObject.email, statesObject.password);
             localStorage.setItem('authData', JSON.stringify(user));
             history.push('/home');
         } catch (err) {
@@ -41,18 +40,16 @@ export default function Signup() {
             throw new Error("Missing email");
         } else if (statesObject.password.length < 6 ) {
             throw new Error("Password must be at least 6 characters");
-        } else if (statesObject.password !== statesObject.confirm) {
-            throw new Error("Confirm input must match the password");
         }
     }
 
     return (
-        <div className="Signup">
-            <div className="signup-view">
-                <p className="signup-title">Sign Up</p>
-                <p className="signup-comment">{comment}</p>
-                <div className="signup-box">
-                    <div className="signup-box-inputs">
+        <div className="Login">
+            <div className="login-view">
+                <p className="login-title">Login</p>
+                <p className="login-comment">{comment}</p>
+                <div className="login-box">
+                    <div className="login-box-inputs">
                         <div className="email">
                             <TextFieldInput
                                 label="email"
@@ -63,30 +60,14 @@ export default function Signup() {
                                 label="password"
                             />
                         </div>
-                        <div className="confirm">
-                            <PasswordInput
-                                label="confirm"
-                            />
-                        </div>
                     </div>
                     <BasicButton 
-                    label="submit"
-                    variant="contained"
-                    cb={signup}
-                    />
-                </div>
-                <div className="to-login">
-                    <span className="to-login-text">
-                        Already have an account?
-                    </span>
-                    <UnderlineLink 
-                        label="Login"
-                        underline="hover"
-                        linkTo="/login"
+                        label="login"
+                        variant="contained"
+                        cb={login}
                     />
                 </div>
             </div>
-            
         </div>
     )
 }

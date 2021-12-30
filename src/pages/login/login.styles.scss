@@ -1,26 +1,27 @@
-.Signup {
+.Login {
+    width: 100vw;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     height: 100vh;
-    width: 45vw;
     background: pink;
 
-    .signup-view {
+    .login-view {
         height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
 
-        .signup-title {
+        .login-title {
             font-size: 4rem;
         }
     
-        .signup-comment {
+        .login-comment {
             font-size: 3vmin;
             height: 3vmin;
         }
     
-        .signup-box {
+        .login-box {
             height: 40vh;
             display: flex;
             flex-direction: column;
@@ -33,10 +34,6 @@
                 flex-direction: column;
                 justify-content: space-around;
             }
-        }
-
-        .to-login {
-            margin-top: 20px;
         }
     }
 }
