@@ -1,8 +1,40 @@
 .Signup {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     height: 100vh;
-    background: pink;
-    align-items: center;
+
+    .signup-view {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .signup-title {
+            font-size: 4rem;
+        }
+    
+        .signup-comment {
+            font-size: 3vmin;
+            height: 3vmin;
+        }
+    
+        .signup-box {
+            height: 40vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+    
+            &-inputs {
+                height: 40vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+            }
+        }
+
+        .to-login {
+            margin-top: 20px;
+        }
+    }
 }

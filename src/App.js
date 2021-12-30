@@ -4,11 +4,12 @@ import Signup from './pages/signup/components/Signup.component';
 import Home from './pages/home/components/Home.component';
 import ProtectedRoute from './components/ProtectedRoute.component';
 
+
 // TODO: Login page
 
 function App() {
   return (
-      <Router>
+    <Router>
         <Route path="/" exact component={Signup} />
         <ProtectedRoute path="/home" component={Home} />
       </Router>

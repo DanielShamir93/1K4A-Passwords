@@ -5,6 +5,9 @@ import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/aut
 import PasswordInput from '../../../components/mui.components/PasswordInput.components';
 import TextFieldInput from '../../../components/mui.components/TextFieldInput.component';
 import { useSelector } from 'react-redux';
+import BasicButton from '../../../components/mui.components/BasicButton.component';
+import UnderlineLink from '../../../components/mui.components/UnderlineLink.component';
+import { makeStyles } from '@mui/styles';
 import '../signup.styles.scss';
 
 export default function Signup() {
@@ -46,35 +49,45 @@ export default function Signup() {
 
     return (
         <div className="Signup">
-            <h1>Sign Up</h1>
-            <h3>{comment}</h3>
-            <div className="user-inputs">
-                <div className="email">
-                    <TextFieldInput
-                        label="email"
+            <div className="signup-view">
+                <p className="signup-title">Sign Up</p>
+                <p className="signup-comment">{comment}</p>
+                <div className="signup-box">
+                    <div className="signup-box-inputs">
+                        <div className="email">
+                            <TextFieldInput
+                                label="email"
+                            />
+                        </div>
+                        <div className="password">
+                            <PasswordInput
+                                label="password"
+                            />
+                        </div>
+                        <div className="confirm">
+                            <PasswordInput
+                                label="confirm"
+                            />
+                        </div>
+                    </div>
+                    <BasicButton 
+                    label="submit"
+                    variant="contained"
+                    signup={signup}
                     />
                 </div>
-                <div className="password">
-                    <PasswordInput
-                        label="password"
-                    />
-                </div>
-                <div className="confirm">
-                    <PasswordInput
-                        label="confirm"
+                <div className="to-login">
+                    <span className="to-login-text">
+                        Already have an account?
+                    </span>
+                    <UnderlineLink 
+                        label="Login"
+                        underline="hover"
+                        linkTo="/login"
                     />
                 </div>
             </div>
-            <div>
-                <div>
-                    <button onClick={signup}>Sign Up</button>
-                </div>
-                <div>
-                    <p>
-                        Already have an account? <Link to="/">Log In</Link> 
-                    </p>
-                </div>
-            </div>
+            
         </div>
     )
 }
