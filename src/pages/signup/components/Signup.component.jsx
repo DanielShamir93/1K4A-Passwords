@@ -4,14 +4,11 @@ import { auth } from "../../../firebase/firebase-config";
 import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import PasswordInput from '../../../components/mui.components/PasswordInput.components';
 import TextFieldInput from '../../../components/mui.components/TextFieldInput.component';
-import { useSelector, useDispatch } from 'react-redux';
-import { isAuthAction } from '../../../store/actions/actions';
+import { useSelector } from 'react-redux';
 import '../signup.styles.scss';
 
 export default function Signup() {
-    const [user, setUser] = useState({});
     const [comment, setComment] = useState('');
-    const dispatch = useDispatch();
     const history = useHistory();
     const statesObject = useSelector((state) => {
         return {
@@ -21,21 +18,21 @@ export default function Signup() {
         };
     });
 
-    onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser);
-    });
+    // const [user, setUser] = useState({});
+    // onAuthStateChanged(auth, (currentUser) => {
+    //     setUser(currentUser);
+    // });
 
     const signup = async () => {
         try {
             isValidInput();
-            await createUserWithEmailAndPassword(auth, statesObject.email, statesObject.password);
-            dispatch(isAuthAction(true));
+            const user = await createUserWithEmailAndPassword(auth, statesObject.email, statesObject.password);
+            localStorage.setItem('authData', JSON.stringify(user));
             history.push('/home');
         } catch (err) {
             setComment(err.message);
         }
     } 
-    
 
     const isValidInput = () => {
         if (statesObject.email === "") {
