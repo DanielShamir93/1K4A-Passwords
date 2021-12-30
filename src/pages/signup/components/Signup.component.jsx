@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom"
 import { auth } from "../../../firebase/firebase-config";
-import { createUserWithEmailAndPassword } from "firebase/auth"; //onAuthStateChanged
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import PasswordInput from '../../../components/mui.components/PasswordInput.components';
 import TextFieldInput from '../../../components/mui.components/TextFieldInput.component';
 import { useSelector } from 'react-redux';
 import BasicButton from '../../../components/mui.components/BasicButton.component';
 import UnderlineLink from '../../../components/mui.components/UnderlineLink.component';
 import '../signup.styles.scss';
+import { useDispatch } from "react-redux";
+import { isAuthAction } from "../../../store/actions/actions";
 
 export default function Signup() {
     const [comment, setComment] = useState('');
     const history = useHistory();
+    const dispatch = useDispatch();
     const statesObject = useSelector((state) => {
         return {
             email: state.email,
@@ -20,16 +23,11 @@ export default function Signup() {
         };
     });
 
-    // const [user, setUser] = useState({});
-    // onAuthStateChanged(auth, (currentUser) => {
-    //     setUser(currentUser);
-    // });
-
     const signup = async () => {
         try {
             isValidInput();
-            const user = await createUserWithEmailAndPassword(auth, statesObject.email, statesObject.password);
-            localStorage.setItem('authData', JSON.stringify(user));
+            await createUserWithEmailAndPassword(auth, statesObject.email, statesObject.password);
+            dispatch(isAuthAction(true));
             history.push('/home');
         } catch (err) {
             setComment(err.message);

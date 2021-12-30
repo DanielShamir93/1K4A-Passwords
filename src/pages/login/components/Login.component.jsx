@@ -1,16 +1,19 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom"
 import { auth } from "../../../firebase/firebase-config";
-import { signInWithEmailAndPassword } from "firebase/auth"; //onAuthStateChanged
+import { signInWithEmailAndPassword } from "firebase/auth";
 import PasswordInput from '../../../components/mui.components/PasswordInput.components';
 import TextFieldInput from '../../../components/mui.components/TextFieldInput.component';
 import { useSelector } from 'react-redux';
 import BasicButton from '../../../components/mui.components/BasicButton.component';
+import { useDispatch } from "react-redux";
+import { isAuthAction } from "../../../store/actions/actions";
 import '../login.styles.scss';
 
 export default function Login() {
     const [comment, setComment] = useState('');
     const history = useHistory();
+    const dispatch = useDispatch();
     const statesObject = useSelector((state) => {
         return {
             email: state.email,
@@ -19,16 +22,11 @@ export default function Login() {
         };
     });
 
-    // const [user, setUser] = useState({});
-    // onAuthStateChanged(auth, (currentUser) => {
-    //     setUser(currentUser);
-    // });
-
     const login = async () => {
         try {
             isValidInput();
-            const user = await signInWithEmailAndPassword(auth, statesObject.email, statesObject.password);
-            localStorage.setItem('authData', JSON.stringify(user));
+            await signInWithEmailAndPassword(auth, statesObject.email, statesObject.password);
+            dispatch(isAuthAction(true));
             history.push('/home');
         } catch (err) {
             setComment(err.message);
