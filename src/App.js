@@ -10,7 +10,7 @@ function App() {
     <Router>
         <Route path="/" exact component={Signup} />
         <Route path="/login" exact component={Login} />
-        <ProtectedRoute path="/home" component={Home} />
+        <ProtectedRoute path="/home" exact component={Home} />
       </Router>
   );
 }
