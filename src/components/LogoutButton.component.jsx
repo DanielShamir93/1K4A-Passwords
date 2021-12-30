@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/firebase-config";
 
