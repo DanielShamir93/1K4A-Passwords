@@ -1,11 +1,12 @@
 import { withRouter } from "react-router-dom";
-import LogoutButton from "./../../../components/LogoutButton.component";
+import { useEffect } from "react";
+import "./home.styles.scss";
 
 const Home = () => {
+
     return (
-        <div>
+        <div className="Home">
             <h1>Home</h1>
-            <LogoutButton />
         </div>
     )
 }

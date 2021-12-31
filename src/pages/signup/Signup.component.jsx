@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom"
-import { auth } from "../../../firebase/firebase-config";
+import { auth } from "../../firebase/firebase-config";
 import Box from '@mui/material/Box';
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import PasswordInput from '../../../components/mui/PasswordInput.components';
-import TextFieldInput from '../../../components/mui/TextFieldInput.component';
+import PasswordInput from '../../components/mui/PasswordInput.components';
+import TextFieldInput from '../../components/mui/TextFieldInput.component';
 import { useSelector } from 'react-redux';
-import BasicButton from '../../../components/mui/BasicButton.component';
-import UnderlineLink from '../../../components/mui/UnderlineLink.component';
-import '../signup.styles.scss';
+import BasicButton from '../../components/mui/BasicButton.component';
+import UnderlineLink from '../../components/mui/UnderlineLink.component';
+import './signup.styles.scss';
 import { useDispatch } from "react-redux";
-import { isAuthAction } from "../../../store/actions/actions";
+import { isAuthAction } from "../../store/actions/actions";
 
 export default function Signup() {
     const [comment, setComment] = useState('');

@@ -1,11 +1,22 @@
 .Navbar {
     width: 100vw;
-    height: 5vh;
+    height: 6vh;
     position: fixed;
+    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: rgb(212, 92, 112);
+
+    .leftside {
+        display: flex;
+
+        .logo {
+            margin: 0;
+            padding: 1vmin;
+            font-size: 2vmin;
+        }
+    }
 
     .rightside {
         margin-right: 1vmin;
