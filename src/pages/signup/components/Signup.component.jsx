@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom"
 import { auth } from "../../../firebase/firebase-config";
 import Box from '@mui/material/Box';
@@ -20,9 +20,13 @@ export default function Signup() {
         return {
             email: state.email,
             password: state.password,
-            confirm: state.confirm,
+            confirm: state.confirm
         };
     });
+
+    useEffect(() => {
+        localStorage.removeItem("persist:root");
+    }, [])
 
     const signup = async () => {
         try {
@@ -87,7 +91,6 @@ export default function Signup() {
                     />
                 </div>
             </div>
-            
         </div>
     )
 }
