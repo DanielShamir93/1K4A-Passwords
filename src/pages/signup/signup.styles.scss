@@ -1,12 +1,12 @@
 .Signup {
     display: flex;
+    align-items: center;
     justify-content: center;
     height: 100vh;
     width: 45vw;
     background: pink;
 
     .signup-view {
-        height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -15,28 +15,34 @@
             font-size: 4rem;
         }
     
-        .signup-comment {
-            font-size: 3vmin;
-            height: 3vmin;
-        }
-    
         .signup-box {
-            height: 30vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-around;
     
+            .signup-comment {
+                font-size: 1.5rem;
+                height: 2rem;
+            }
+
             &-inputs {
-                height: 40vh;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
             }
+
+            .submit-button {
+                margin-top: 20px;
+            }
         }
 
         .to-login {
-            margin-top: 80px;
+            margin-top: 30px;
+            
+            &-text {
+                padding-right: 5px;
+            }
         }
     }
 }

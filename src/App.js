@@ -5,10 +5,12 @@ import Login from './pages/login/components/Login.component';
 import Home from './pages/home/components/Home.component';
 import ProtectedRoute from './components/ProtectedRoute.component';
 import AuthRoute from './components/AuthRoute.component';
+import Navbar from './components/navbar/Navbar.component';
 
 function App() {
   return (
     <Router>
+      <Navbar />
       <AuthRoute path="/" redirectPath='/home' exact component={Signup} />
       <AuthRoute path="/login" redirectPath="/home" component={Login} />
       <ProtectedRoute path="/home" redirectPath="/" component={Home} />

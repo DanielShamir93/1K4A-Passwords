@@ -1,0 +1,13 @@
+.Navbar {
+    width: 100vw;
+    height: 5vh;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(212, 92, 112);
+
+    .rightside {
+        margin-right: 1vmin;
+    }
+}

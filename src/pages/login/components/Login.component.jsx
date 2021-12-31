@@ -4,10 +4,10 @@ import { auth } from "../../../firebase/firebase-config";
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { signInWithEmailAndPassword } from "firebase/auth";
-import PasswordInput from '../../../components/mui.components/PasswordInput.components';
-import TextFieldInput from '../../../components/mui.components/TextFieldInput.component';
+import PasswordInput from '../../../components/mui/PasswordInput.components';
+import TextFieldInput from '../../../components/mui/TextFieldInput.component';
 import { useSelector } from 'react-redux';
-import BasicButton from '../../../components/mui.components/BasicButton.component';
+import BasicButton from '../../../components/mui/BasicButton.component';
 import { useDispatch } from "react-redux";
 import { isAuthAction } from "../../../store/actions/actions";
 import '../login.styles.scss';
@@ -63,19 +63,11 @@ export default function Login() {
                             </div>
                         </Box>
                     </div>
-                    <Stack direction="row" spacing={2}>
-                        <BasicButton 
-                            label="login"
-                            variant="contained"
-                            cb={login}
-                        />
-                        <Link to="/home">
-                            <BasicButton 
-                                label="home"
-                                variant="outlined"
-                            />
-                        </Link>
-                    </Stack>
+                    <BasicButton 
+                        label="login"
+                        variant="contained"
+                        cb={login}
+                    />
                 </div>
             </div>
         </div>
