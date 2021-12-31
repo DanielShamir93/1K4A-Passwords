@@ -1,0 +1,12 @@
+.CreateAccount {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    .create-account-form {
+        display: flex;
+        flex-direction: column;
+        
+    }
+}

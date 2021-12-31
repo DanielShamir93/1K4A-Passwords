@@ -30,21 +30,25 @@ export default function Navbar() {
                 <figure className="logo">logo</figure>
                 <Link to="/home">
                     <IconedButton
+                        myStyle={{fontSize: "2vmin"}}
                         reactIconComponent={<AiOutlineHome className="react-icon" style={{fontSize: "3vmin"}} />} 
                     />
                 </Link>
             </div>
             <div className="rightside">
-                <IconedButton 
+                <IconedButton
+                    myStyle={{fontSize: "2vmin"}}
                     term="Tutorial"
                     reactIconComponent={<AiOutlineQuestionCircle className="react-icon" />} 
                 />
                 <IconedButton 
+                    myStyle={{fontSize: "2vmin"}}
                     term="About" 
                     reactIconComponent={<FiInfo className="react-icon" />} 
                 />
                 <Link to={statesObject.isAuth ? "/home" : "login"} >
                     <IconedButton
+                        myStyle={{fontSize: "2vmin"}}
                         onClick={logout}
                         term={statesObject.isAuth ? "Logout" : "Login"} 
                         reactIconComponent={<FiLogIn className="react-icon" />} 

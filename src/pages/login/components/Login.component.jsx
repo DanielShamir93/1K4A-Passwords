@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { useHistory, Link } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { auth } from "../../../firebase/firebase-config";
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import PasswordInput from '../../../components/mui/PasswordInput.components';
 import TextFieldInput from '../../../components/mui/TextFieldInput.component';
