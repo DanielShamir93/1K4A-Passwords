@@ -41,6 +41,7 @@ const Home = () => {
         <div className="toolbar">
           {isCreateAccount ? (
             <HiMinusCircle
+              style={{color: "#9e2c2c"}}
               className="create-account-icon"
               onClick={() => {
                 setIsCreateAccount(!isCreateAccount);
