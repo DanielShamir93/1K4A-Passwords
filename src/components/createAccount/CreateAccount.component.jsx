@@ -140,6 +140,15 @@ export default function CreateAccount({ collectionRef }) {
             value={privateKey}
           />
         </div>
+        <button type="button">Generate</button>
+        <div>
+          <input
+            type="text"
+            placeholder="Output"
+            readOnly
+            style={{textAlign: 'center'}}
+          />
+        </div>
         <button className="submit-button" type="button" onClick={createAccount}>
           Submit
         </button>
