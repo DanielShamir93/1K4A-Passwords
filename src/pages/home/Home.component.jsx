@@ -12,17 +12,17 @@ const Home = () => {
   const [accounts, setAccounts] = useState([]);
   const [isCreateAccount, setIsCreateAccount] = useState(false);
 
-  useEffect(() => {
-    const getAccounts = async () => {
-      try {
-        const data = await getDocs(accountsCollectionRef);
-        setAccounts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      } catch (err) {
-        console.log(err.message);
-      }
-    };
-    getAccounts();
-  }, [accountsCollectionRef]);
+//   useEffect(() => {
+//     const getAccounts = async () => {
+//       try {
+//         const data = await getDocs(accountsCollectionRef);
+//         setAccounts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+//       } catch (err) {
+//         console.log(err.message);
+//       }
+//     };
+//     getAccounts();
+//   }, []);
 
   const renderAccounts = () => {
     return accounts.map((account) => {
