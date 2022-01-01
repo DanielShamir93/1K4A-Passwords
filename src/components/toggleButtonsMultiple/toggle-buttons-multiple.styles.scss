@@ -3,11 +3,15 @@
     justify-content: center;
 
     input {
-        // display: none;
+        display: none;
     }
 
     button {
         cursor: pointer;
+        font-size: 2.5vmin;
+        border: none;
+        box-shadow: 0 0 0.2vmin black;
+        padding: 1vmin;
     }
 
     .digits-button {
@@ -24,5 +28,5 @@
 }
 
 .unchecked {
-    background: #d45c7038;
+    background: #d45c7069;
 }

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import "./toggle-buttons-multiple.styles.scss";
 
-export default function ToggleButtonsMultiple() {
+export default function ToggleButtonsMultiple({ isChecked, setCheckbox }) {
 
   const digitsCheckboxRef = useRef();
   const uppercaseCheckboxRef = useRef();
@@ -22,20 +22,20 @@ export default function ToggleButtonsMultiple() {
   return (
     <div className="Toggle-buttons-multiple">
       <div className="digits">
-        <input ref={digitsCheckboxRef} type="checkbox" className="digits-checkbox" checked />
-        <button className="digits-button checked" onClick={(e) => {clickCheckbox(digitsCheckboxRef, e)}}>digits</button>
+        <input ref={digitsCheckboxRef} type="checkbox" className="digits-checkbox" checked={isChecked.isDigitsChecked} onChange={(e) => {setCheckbox(e.target, "isDigitsChecked");}} />
+        <button type="button" className="digits-button checked" onClick={(e) => {clickCheckbox(digitsCheckboxRef, e)}}>Digits</button>
       </div>
       <div className="uppercase">
-        <input ref={uppercaseCheckboxRef} type="checkbox" className="uppercase-checkbox" checked />
-        <button className="uppercase-button checked" onClick={(e) => {clickCheckbox(uppercaseCheckboxRef, e)}}>uppercase</button>
+        <input ref={uppercaseCheckboxRef} type="checkbox" className="uppercase-checkbox" checked={isChecked.isUppercaseChecked} onChange={(e) => {setCheckbox(e.target, "isUppercaseChecked");}} />
+        <button type="button" className="uppercase-button checked" onClick={(e) => {clickCheckbox(uppercaseCheckboxRef, e)}}>Uppercase</button>
       </div>
       <div className="lowercase">
-        <input ref={lowercaseCheckboxRef} type="checkbox" className="lowercase-checkbox" checked />
-        <button className="lowercase-button checked" onClick={(e) => {clickCheckbox(lowercaseCheckboxRef, e)}}>lowercase</button>
+        <input ref={lowercaseCheckboxRef} type="checkbox" className="lowercase-checkbox" checked={isChecked.isLowercaseChecked} onChange={(e) => {setCheckbox(e.target, "isLowercaseChecked");}} />
+        <button type="button" className="lowercase-button checked" onClick={(e) => {clickCheckbox(lowercaseCheckboxRef, e)}}>Lowercase</button>
       </div>
       <div className="digits">
-        <input ref={symbolsCheckboxRef} type="checkbox" className="symbols-checkbox" checked />
-        <button className="symbols-button checked" onClick={(e) => {clickCheckbox(symbolsCheckboxRef, e)}}>symbols</button>
+        <input ref={symbolsCheckboxRef} type="checkbox" className="symbols-checkbox" checked={isChecked.isSymbolsChecked} onChange={(e) => {setCheckbox(e.target, "isSymbolsChecked");}} />
+        <button type="button" className="symbols-button checked" onClick={(e) => {clickCheckbox(symbolsCheckboxRef, e)}}>Symbols</button>
       </div>
     </div>
   );

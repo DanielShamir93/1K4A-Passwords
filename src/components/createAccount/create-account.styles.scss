@@ -2,7 +2,14 @@
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, 100%);
+    animation: create-account-animation 1s forwards ease;
+
+    @keyframes create-account-animation {
+        to {
+            transform: translate(-50%);
+        }
+    }
     
     .create-account-form {
         display: flex;
