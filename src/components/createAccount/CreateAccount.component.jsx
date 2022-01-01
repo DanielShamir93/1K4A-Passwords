@@ -2,15 +2,17 @@ import "./create-account.styles.scss";
 import { useState } from "react";
 import { addDoc } from "firebase/firestore";
 import hash from "object-hash";
-
+import ToggleButtonsMultiple from "../toggleButtonsMultiple/ToggleButtonsMultiple.component";
 import Password from "../../modules/Password";
 
 export default function CreateAccount({ collectionRef }) {
   const [name, setName] = useState("");
-  const [isDigitsChecked, setIsDigitsChecked] = useState(true);
-  const [isUppercaseChecked, setIsUppercaseChecked] = useState(true);
-  const [isLowercaseChecked, setIsLowercaseChecked] = useState(true);
-  const [isSymbolsChecked, setIsSymbolsChecked] = useState(true);
+  const [isChecked, setIsChecked] = useState({
+    isDigitsChecked: true,
+    isUppercaseChecked: true,
+    isLowercaseChecked: true,
+    isSymbolsChecked: true
+  });
   const [PasswordLength, setPasswordLength] = useState(12);
   const [passStartsWith, setPassStartsWith] = useState("");
   const [passEndsWith, setPassEndsWith] = useState("");
@@ -20,11 +22,11 @@ export default function CreateAccount({ collectionRef }) {
 
   const createAccount = async () => {
     try {
-        const publicKey = hash(Math.random());
-        const password = new Password(privateKey, publicKey);
-        password.setKeyboard({avoidChars: avoidCharsInPass, isIncludeDigits: isDigitsChecked, isIncludeUpperCase: isUppercaseChecked, isIncludeLowerCase: isLowercaseChecked, isIncludeSymbols: isSymbolsChecked, mustIncludeChars: passMustInclude})
-        password.generate({PassLength: PasswordLength, PassStartsWith: passStartsWith, PassEndsWidth: passEndsWith})
-        console.log(password.get())
+        // const publicKey = hash(Math.random());
+        // const password = new Password(privateKey, publicKey);
+        // password.setKeyboard({avoidChars: avoidCharsInPass, isIncludeDigits: isDigitsChecked, isIncludeUpperCase: isUppercaseChecked, isIncludeLowerCase: isLowercaseChecked, isIncludeSymbols: isSymbolsChecked, mustIncludeChars: passMustInclude})
+        // password.generate({PassLength: PasswordLength, PassStartsWith: passStartsWith, PassEndsWidth: passEndsWith})
+        // console.log(password.get())
 
     //   await addDoc(collectionRef, {name, publicKey: privateKey});
     } catch (err) {
@@ -32,20 +34,27 @@ export default function CreateAccount({ collectionRef }) {
     }
   };
 
+  const setCheckbox = (checkboxElement, statePropertyName) => {
+    const cloneIsChecked = {...isChecked};
+    cloneIsChecked[statePropertyName] = checkboxElement.checked;
+    setIsChecked(cloneIsChecked);
+  }
+console.log(isChecked)
   return (
     <div className="CreateAccount">
+    {/* <ToggleButtonsMultiple /> */}
       <form className="create-account-form">
         <div>
             <input type="text" placeholder="Name" onChange={(e) => {setName(e.target.value);}} value={name} />
         </div>
         <div>
-            <input type="checkbox" id="digits" checked={isDigitsChecked} onChange={(e) => {setIsDigitsChecked(e.target.checked);}}/>
+            <input type="checkbox" id="digits" checked={isChecked.isDigitsChecked} onChange={(e) => {setCheckbox(e.target, "isDigitsChecked");}}/>
             <label htmlFor="digits">Digits</label>
-            <input type="checkbox" id="uppercase" checked={isUppercaseChecked} onChange={(e) => {setIsUppercaseChecked(e.target.checked);}}/>
+            <input type="checkbox" id="uppercase" checked={isChecked.isUppercaseChecked} onChange={(e) => {setCheckbox(e.target, "isUppercaseChecked");}}/>
             <label htmlFor="uppercase">Uppercase</label>
-            <input type="checkbox" id="lowercase" checked={isLowercaseChecked} onChange={(e) => {setIsLowercaseChecked(e.target.checked);}}/>
+            <input type="checkbox" id="lowercase" checked={isChecked.isLowercaseChecked} onChange={(e) => {setCheckbox(e.target, "isLowercaseChecked");}}/>
             <label htmlFor="lowercase">Lowercase</label>
-            <input type="checkbox" id="symbols" checked={isSymbolsChecked} onChange={(e) => {setIsSymbolsChecked(e.target.checked);}}/>
+            <input type="checkbox" id="symbols" checked={isChecked.isSymbolsChecked} onChange={(e) => {setCheckbox(e.target, "isSymbolsChecked");}}/>
             <label htmlFor="symbols">Symbols</label>
         </div>
         <div>
@@ -66,7 +75,7 @@ export default function CreateAccount({ collectionRef }) {
         <div>
             <input type="text" placeholder="Private Key" onChange={(e) => { setPrivateKey(e.target.value); }} value={privateKey} />
         </div>
-        <button type="button" onClick={createAccount}>
+        <button className="submit-button" type="button" onClick={createAccount}>
           Submit
         </button>
       </form>

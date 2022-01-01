@@ -1,12 +1,26 @@
 .CreateAccount {
     position: absolute;
-    top: 50%;
+    bottom: 0;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     
     .create-account-form {
         display: flex;
         flex-direction: column;
-        
+        align-items: center;
+        background: rgba(0, 0, 0, 0.2);
+        padding: 2vmin;
+        border-radius: 10% 10% 0 0;
+        font-size: 3vmin;
+
+        input {
+            font-size: 3vmin;
+            margin: 1vh 0;
+            padding: 1vh 0;
+        }
+
+        .submit-button {
+            font-size: 3vmin;
+        }
     }
 }

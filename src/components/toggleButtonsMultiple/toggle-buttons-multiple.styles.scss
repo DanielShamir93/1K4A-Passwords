@@ -1,0 +1,28 @@
+.Toggle-buttons-multiple {
+    display: flex;
+    justify-content: center;
+
+    input {
+        // display: none;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    .digits-button {
+        border-radius: 2vmin 0 0 2vmin;
+    }
+
+    .symbols-button {
+        border-radius: 0 2vmin 2vmin 0;
+    }
+}
+
+.checked {
+    background: #D45C70;
+}
+
+.unchecked {
+    background: #d45c7038;
+}
