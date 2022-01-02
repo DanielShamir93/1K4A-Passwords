@@ -39,14 +39,15 @@ export default function CreateAccount({ closeCreateAccount }) {
           passPattern,
           passStartsWith,
           publicKey,
-          passHasDigit: isChecked.isDigitsChecked,
-          passHasUppercase: isChecked.isUppercaseChecked,
-          passHasLowercase: isChecked.isLowercaseChecked,
-          passHasSymbol: isChecked.isSymbolsChecked
-        }
+          isPassHasDigit: isChecked.isDigitsChecked,
+          isPassHasUppercase: isChecked.isUppercaseChecked,
+          isPassHasLowercase: isChecked.isLowercaseChecked,
+          isPassHasSymbol: isChecked.isSymbolsChecked,
+        };
         await addDoc(collection(db, "accounts"), newAccount);
+
         resetCreateAccountForm();
-      } 
+      }
     } catch (err) {
       console.log(err.massage);
     }
@@ -70,25 +71,37 @@ export default function CreateAccount({ closeCreateAccount }) {
       isUppercaseChecked: true,
       isLowercaseChecked: true,
       isSymbolsChecked: true,
-    })
+    });
     closeCreateAccount();
-  }
-
+  };
+// _e47gje=:=pn
   const outputPassword = () => {
     if (accountName.length > 0) {
       if (privateKey.length > 0) {
-        if (isChecked.isDigitsChecked || isChecked.isUppercaseChecked || isChecked.isLowercaseChecked || isChecked.isSymbolsChecked) {
+        if (
+          isChecked.isDigitsChecked ||
+          isChecked.isUppercaseChecked ||
+          isChecked.isLowercaseChecked ||
+          isChecked.isSymbolsChecked
+        ) {
           if (parseInt(passLength) > 0 && parseInt(passLength) < 41) {
             setIsValidAccount(true);
-            setPublicKey(hash(Math.random()));
-            const password = new Password(privateKey, publicKey);
+            const hashedPublicKey = hash(Math.random());
+            setPublicKey(hashedPublicKey);
+            const password = new Password(privateKey, hashedPublicKey);
+            password.setKeyboard({
+              avoidChars: passAvoidChars,
+              isIncludeDigits: isChecked.isDigitsChecked,
+              isIncludeUpperCase: isChecked.isUppercaseChecked,
+              isIncludeLowerCase: isChecked.isLowercaseChecked,
+              isIncludeSymbols: isChecked.isSymbolsChecked,
+              mustIncludeChars: passMustContain,
+            });
 
             if (passPattern.length > 0) {
-              password.setKeyboard({ avoidChars: passAvoidChars, isIncludeDigits: isChecked.isDigitsChecked, isIncludeUpperCase: isChecked.isUppercaseChecked, isIncludeLowerCase: isChecked.isLowercaseChecked, isIncludeSymbols: isChecked.isSymbolsChecked, mustIncludeChars: passMustContain });
               password.generateFromPattern(passPattern);
               setOutput(password.getPassword);
             } else {
-              password.setKeyboard({ avoidChars: passAvoidChars, isIncludeDigits: isChecked.isDigitsChecked, isIncludeUpperCase: isChecked.isUppercaseChecked, isIncludeLowerCase: isChecked.isLowercaseChecked, isIncludeSymbols: isChecked.isSymbolsChecked, mustIncludeChars: passMustContain });
               password.generate(passLength, passStartsWith, passEndsWith);
               setOutput(password.getPassword);
             }
@@ -108,7 +121,7 @@ export default function CreateAccount({ closeCreateAccount }) {
       setOutput("Missing: Account Name");
       setIsValidAccount(false);
     }
-  }
+  };
 
   const setCheckbox = (checkboxElement, statePropertyName) => {
     const cloneIsChecked = { ...isChecked };
@@ -223,7 +236,13 @@ export default function CreateAccount({ closeCreateAccount }) {
                 value={privateKey}
               />
             </div>
-            <button className="generate-button" type="button" onClick={outputPassword}>Generate</button>
+            <button
+              className="generate-button"
+              type="button"
+              onClick={outputPassword}
+            >
+              Generate
+            </button>
           </fieldset>
         </div>
         <div>
@@ -235,7 +254,14 @@ export default function CreateAccount({ closeCreateAccount }) {
             readOnly
           />
         </div>
-        <button className="submit-button" type="button" onClick={createAccount} disabled={!isValidAccount}>Submit</button>
+        <button
+          className="submit-button"
+          type="button"
+          onClick={createAccount}
+          disabled={!isValidAccount}
+        >
+          Submit
+        </button>
       </form>
     </div>
   );

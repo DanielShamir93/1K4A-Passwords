@@ -6,6 +6,7 @@ import CreateAccount from "../../components/createAccount/CreateAccount.componen
 import "./home.styles.scss";
 import { db } from "../../firebase/firebase-config";
 import { collection, getDocs } from "firebase/firestore";
+import Account from "../../components/account/Account.component";
 
 const Home = () => {
   const [accounts, setAccounts] = useState([]);
@@ -30,13 +31,7 @@ const Home = () => {
   const renderAccounts = () => {
     return accounts.map((account) => {
       return (
-        <div className="account" key={account.id}>
-          <h2>{account.accountName}</h2>
-          <h3>{account.accountSubname}</h3>
-          <input type="text" placeholder="Private Key"/>
-          <button>Get Password</button>
-          <input type="text" placeholder="Output"/>
-        </div>
+        <Account key={account.id} account={account} />
       );
     });
   };
