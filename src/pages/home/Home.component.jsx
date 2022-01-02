@@ -8,24 +8,22 @@ import { db } from "../../firebase/firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 
 const Home = () => {
-  const accountsCollectionRef = collection(db, "accounts");
   const [accounts, setAccounts] = useState([]);
   const [isCreateAccount, setIsCreateAccount] = useState(false);
 
   useEffect(() => {
     const getAccounts = async () => {
       try {
-        // const { docs } = await getDocs(accountsCollectionRef);
-        // setAccounts(docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        const { docs } = await getDocs(collection(db, "accounts"))
+        setAccounts(docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       } catch (err) {
         console.log(err.message);
-      }
+      };
     };
     getAccounts();
   }, []);
 
   const closeCreateAccount = () => {
-    console.log('wow')
     setIsCreateAccount(false);
   }
 
@@ -33,8 +31,11 @@ const Home = () => {
     return accounts.map((account) => {
       return (
         <div className="account" key={account.id}>
-          <h2>Name: {account.accountName}</h2>
-          <h3>Subname: {account.accountSubname}</h3>
+          <h2>{account.accountName}</h2>
+          <h3>{account.accountSubname}</h3>
+          <input type="text" placeholder="Private Key"/>
+          <button>Get Password</button>
+          <input type="text" placeholder="Output"/>
         </div>
       );
     });

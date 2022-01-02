@@ -44,7 +44,7 @@ export default function CreateAccount({ closeCreateAccount }) {
           passHasLowercase: isChecked.isLowercaseChecked,
           passHasSymbol: isChecked.isSymbolsChecked
         }
-        // await addDoc(collection(db, "accounts"), newAccount);
+        await addDoc(collection(db, "accounts"), newAccount);
         resetCreateAccountForm();
       } 
     } catch (err) {
