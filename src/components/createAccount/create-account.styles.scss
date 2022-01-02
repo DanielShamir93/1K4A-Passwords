@@ -12,23 +12,58 @@
     }
     
     .create-account-form {
+        height: 90vh;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: space-around;
         background: rgba(0, 0, 0, 0.2);
         padding: 2vmin;
         border-radius: 10% 10% 0 0;
         font-size: 3vmin;
+        width: 40vw;
+        
+        .account-details {
+            border-radius: 2vmin 2vmin 0 0;
+            border: 0.5vmin solid white;
 
-        input {
-            font-size: 2vmin;
-            margin: 1vh 0;
-            padding: 1vh 0;
-            border-radius: 1vmin;
+            input {
+                font-size: 2vmin;
+                padding: 1vh 0;
+                border-radius: 1vmin;
+                margin: 0.5vmin;
+                border: none;
+            }
+        }
+
+        .password-details {
+            border-radius: 0 0 2vmin 2vmin;
+            border: 0.5vmin solid white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1vh;
+
+            input {
+                font-size: 2vmin;
+                padding: 1vh 0;
+                border-radius: 1vmin;
+                border: none;
+            }
+
+            .generate-button {
+                margin-top: 0.5vh;
+                padding: 0.5vmin;
+                cursor: pointer;
+            }
         }
 
         .submit-button {
             font-size: 3vmin;
+            padding: 0.5vmin;
+            cursor: pointer;
         }
+
+        
     }
 }

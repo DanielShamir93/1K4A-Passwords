@@ -64,111 +64,113 @@ export default function CreateAccount() {
   return (
     <div className="CreateAccount">
       <form className="create-account-form">
-        <fieldset className="account-details">
-          <legend>Account Settings:</legend>
-          <div>
-            <input
-              type="text"
-              placeholder="Name"
-              onChange={(e) => {
-                setAccountName(e.target.value);
-              }}
-              value={accountName}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              placeholder="Subname"
-              onChange={(e) => {
-                setAccountSubname(e.target.value);
-              }}
-              value={accountSubname}
-            />
-          </div>
-        </fieldset>
-        <fieldset className="password-details">
-          <legend>Password Settings:</legend>
-          <div>
-            <ToggleButtonsMultiple
-              setCheckbox={setCheckbox}
-              isChecked={isChecked}
-            />
-          </div>
-          <div>
-            <input
-              type="number"
-              placeholder="Password Length"
-              min="1"
-              max="40"
-              onChange={(e) => {
-                setPassLength(e.target.value);
-              }}
-              value={passLength}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              placeholder="Starts With"
-              onChange={(e) => {
-                setPassStartsWith(e.target.value);
-              }}
-              value={passStartsWith}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              placeholder="Ends With"
-              onChange={(e) => {
-                setPassEndsWith(e.target.value);
-              }}
-              value={passEndsWith}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              placeholder="Must Contain"
-              onChange={(e) => {
-                setPassMustInclude(e.target.value);
-              }}
-              value={passMustInclude}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              placeholder="Avoid Characters"
-              onChange={(e) => {
-                setAvoidCharsInPass(e.target.value);
-              }}
-              value={avoidCharsInPass}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              placeholder="Pattern"
-              onChange={(e) => {
-                setPassPattern(e.target.value);
-              }}
-              value={passPattern}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              placeholder="Private Key"
-              onChange={(e) => {
-                setPrivateKey(e.target.value);
-              }}
-              value={privateKey}
-            />
-          </div>
-          <button type="button">Generate</button>
-        </fieldset>
+        <div className="create-account-details">
+          <fieldset className="account-details">
+            <legend>Account Settings:</legend>
+            <div>
+              <input
+                type="text"
+                placeholder="Name"
+                onChange={(e) => {
+                  setAccountName(e.target.value);
+                }}
+                value={accountName}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Subname"
+                onChange={(e) => {
+                  setAccountSubname(e.target.value);
+                }}
+                value={accountSubname}
+              />
+            </div>
+          </fieldset>
+          <fieldset className="password-details">
+            <legend>Password Settings:</legend>
+            <div>
+              <ToggleButtonsMultiple
+                setCheckbox={setCheckbox}
+                isChecked={isChecked}
+              />
+            </div>
+            <div>
+              <input
+                type="number"
+                placeholder="Password Length"
+                min="1"
+                max="40"
+                onChange={(e) => {
+                  setPassLength(e.target.value);
+                }}
+                value={passLength}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Starts With"
+                onChange={(e) => {
+                  setPassStartsWith(e.target.value);
+                }}
+                value={passStartsWith}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Ends With"
+                onChange={(e) => {
+                  setPassEndsWith(e.target.value);
+                }}
+                value={passEndsWith}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Must Contain"
+                onChange={(e) => {
+                  setPassMustInclude(e.target.value);
+                }}
+                value={passMustInclude}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Avoid Characters"
+                onChange={(e) => {
+                  setAvoidCharsInPass(e.target.value);
+                }}
+                value={avoidCharsInPass}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Pattern"
+                onChange={(e) => {
+                  setPassPattern(e.target.value);
+                }}
+                value={passPattern}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Private Key"
+                onChange={(e) => {
+                  setPrivateKey(e.target.value);
+                }}
+                value={privateKey}
+              />
+            </div>
+            <button className="generate-button" type="button">Generate</button>
+          </fieldset>
+        </div>
         <div>
           <input
             type="text"
@@ -177,7 +179,7 @@ export default function CreateAccount() {
             style={{textAlign: 'center'}}
           />
         </div>
-        <button className="submit-button" type="button" onClick={createAccount}>
+        <button className="submit-button" type="button"     onClick={createAccount}>
           Submit
         </button>
       </form>
