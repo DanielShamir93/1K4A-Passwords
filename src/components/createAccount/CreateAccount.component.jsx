@@ -6,7 +6,7 @@ import Password from "../../modules/Password";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";
 
-export default function CreateAccount() {
+export default function CreateAccount({ closeCreateAccount }) {
   const [output, setOutput] = useState("");
   const [accountName, setAccountName] = useState("");
   const [accountSubname, setAccountSubname] = useState("");
@@ -44,7 +44,7 @@ export default function CreateAccount() {
           passHasLowercase: isChecked.isLowercaseChecked,
           passHasSymbol: isChecked.isSymbolsChecked
         }
-        await addDoc(collection(db, "accounts"), newAccount);
+        // await addDoc(collection(db, "accounts"), newAccount);
         resetCreateAccountForm();
       } 
     } catch (err) {
@@ -53,7 +53,25 @@ export default function CreateAccount() {
   };
 
   const resetCreateAccountForm = () => {
-    
+    setOutput("");
+    setAccountName("");
+    setAccountSubname("");
+    setPassLength(12);
+    setPassStartsWith("");
+    setPassEndsWith("");
+    setPassMustContain("");
+    setPassAvoidChars("");
+    setPassPattern("");
+    setPrivateKey("");
+    setPublicKey("");
+    setIsValidAccount(false);
+    setIsChecked({
+      isDigitsChecked: true,
+      isUppercaseChecked: true,
+      isLowercaseChecked: true,
+      isSymbolsChecked: true,
+    })
+    closeCreateAccount();
   }
 
   const outputPassword = () => {

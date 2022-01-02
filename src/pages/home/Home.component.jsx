@@ -24,6 +24,11 @@ const Home = () => {
     getAccounts();
   }, []);
 
+  const closeCreateAccount = () => {
+    console.log('wow')
+    setIsCreateAccount(false);
+  }
+
   const renderAccounts = () => {
     return accounts.map((account) => {
       return (
@@ -59,7 +64,7 @@ const Home = () => {
         <div className="accounts-gallery">{renderAccounts()}</div>
       </div>
       {isCreateAccount && (
-        <CreateAccount />
+        <CreateAccount closeCreateAccount={closeCreateAccount}/>
       )}
     </div>
   );
