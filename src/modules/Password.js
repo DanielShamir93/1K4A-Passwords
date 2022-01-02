@@ -3,8 +3,8 @@ import hash from "object-hash";
 export default class Password {
 
     constructor(privateKey, publicKey) {
-        this.privateKey = privateKey;
-        this.publicKey = publicKey;
+        this.hashedPrivateKey = hash(privateKey);
+        this.publicKey = publicKey; // already hashed
         this.password = "";
         this.keyboard = [];
     }
@@ -33,12 +33,12 @@ export default class Password {
         })
     }
 
-    generate = ({ PassLength, PassStartsWith, PassEndsWidth }) => {
-        const passwordLength = PassLength - (PassStartsWith.length + PassEndsWidth.length);
+    generate = (passLength, passStartsWith, passEndsWidth) => {
+        const passwordLength = passLength - (passStartsWith.length + passEndsWidth.length);
 
-        this.password += PassStartsWith;
+        this.password += passStartsWith;
         this.setPasswordByFormula(passwordLength);
-        this.password += PassEndsWidth;
+        this.password += passEndsWidth;
     }
 
     generateFromPattern = (pattern) => {
@@ -79,7 +79,7 @@ export default class Password {
     }
 
     setPasswordByFormula = (passLength) => {
-        const hashedCombineKeys = hash({privateKey: this.privateKey, publicKey: this.publicKey});
+        const hashedCombineKeys = hash({privateKey: this.hashedPrivateKey, publicKey: this.publicKey});
         const hashedCombinedKeysSum = Array.from(hashedCombineKeys).reduce((prevVal, currVal) => {
             return prevVal + currVal.charCodeAt(0)}, 0);
 
@@ -93,7 +93,6 @@ export default class Password {
         const matchesArray = [];
         let str = "";
         let sequence = "";
-
         const isModifier = (sequence) => /\\[duls]{\d+}/.test(sequence) ? true : false;
 
         for (let i = 0; i < pattern.length; i++) {

@@ -8,6 +8,7 @@ import { db } from "../../firebase/firebase-config";
 const accountsCollectionRef = collection(db, "accounts");
 
 export default function CreateAccount() {
+  const [output, setOutput] = useState("");
   const [accountName, setAccountName] = useState("");
   const [accountSubname, setAccountSubname] = useState("");
   const [passLength, setPassLength] = useState(12);
@@ -26,24 +27,6 @@ export default function CreateAccount() {
 
   const createAccount = async () => {
     try {
-
-      if (accountName.length > 0) {
-        if (privateKey.length > 0) {
-          if (passLength > 0) {
-            if (passPattern.length > 0) {
-              const publicKey = hash(Math.random());
-              const password = new Password(privateKey, publicKey);
-              password.setKeyboard({avoidChars: avoidCharsInPass, isIncludeDigits: isChecked.isDigitsChecked, isIncludeUpperCase: isChecked.isUppercaseChecked, isIncludeLowerCase: isChecked.isLowercaseChecked, isIncludeSymbols: isChecked.isSymbolsChecked, mustIncludeChars: passMustInclude})
-              password.generateFromPattern(passPattern);
-              console.log(password.getPassword());
-            }
-          }
-          
-        }
-      }
-
-      
-
       // const publicKey = hash(Math.random());
       // const password = new Password(privateKey, publicKey);
       // password.setKeyboard({avoidChars: avoidCharsInPass, isIncludeDigits: isDigitsChecked, isIncludeUpperCase: isUppercaseChecked, isIncludeLowerCase: isLowercaseChecked, isIncludeSymbols: isSymbolsChecked, mustIncludeChars: passMustInclude})
@@ -54,6 +37,37 @@ export default function CreateAccount() {
       console.log(err.massage);
     }
   };
+
+  const outputPassword = () => {
+    if (accountName.length > 0) {
+      if (privateKey.length > 0) {
+        if (isChecked.isDigitsChecked || isChecked.isUppercaseChecked || isChecked.isLowercaseChecked || isChecked.isSymbolsChecked) {
+          if (parseInt(passLength) > 0 && parseInt(passLength) < 41) {
+            const publicKey = hash(Math.random());
+            const password = new Password(privateKey, publicKey);
+
+            if (passPattern.length > 0) {
+              password.setKeyboard({ avoidChars: avoidCharsInPass, isIncludeDigits: isChecked.isDigitsChecked, isIncludeUpperCase: isChecked.isUppercaseChecked, isIncludeLowerCase: isChecked.isLowercaseChecked, isIncludeSymbols: isChecked.isSymbolsChecked, mustIncludeChars: passMustInclude });
+              password.generateFromPattern(passPattern);
+              setOutput(password.getPassword);
+            } else {
+              password.setKeyboard({ avoidChars: avoidCharsInPass, isIncludeDigits: isChecked.isDigitsChecked, isIncludeUpperCase: isChecked.isUppercaseChecked, isIncludeLowerCase: isChecked.isLowercaseChecked, isIncludeSymbols: isChecked.isSymbolsChecked, mustIncludeChars: passMustInclude });
+              password.generate(passLength, passStartsWith, passEndsWith);
+              setOutput(password.getPassword);
+            }
+          } else {
+            setOutput("Password Length: Between 1 To 40");
+          }
+        } else {
+          setOutput("Missing Keyboard");
+        }
+      } else {
+        setOutput("Missing: Private Key");
+      }
+    } else {
+      setOutput("Missing: Account Name");
+    }
+  }
 
   const setCheckbox = (checkboxElement, statePropertyName) => {
     const cloneIsChecked = { ...isChecked };
@@ -168,20 +182,19 @@ export default function CreateAccount() {
                 value={privateKey}
               />
             </div>
-            <button className="generate-button" type="button">Generate</button>
+            <button className="generate-button" type="button" onClick={outputPassword}>Generate</button>
           </fieldset>
         </div>
         <div>
           <input
+            className="output"
             type="text"
             placeholder="Output"
+            value={output}
             readOnly
-            style={{textAlign: 'center'}}
           />
         </div>
-        <button className="submit-button" type="button"     onClick={createAccount}>
-          Submit
-        </button>
+        <button className="submit-button" type="button" onClick={createAccount}>Submit</button>
       </form>
     </div>
   );
