@@ -12,24 +12,24 @@ const Home = () => {
   const [accounts, setAccounts] = useState([]);
   const [isCreateAccount, setIsCreateAccount] = useState(false);
 
-//   useEffect(() => {
-//     const getAccounts = async () => {
-//       try {
-//         const data = await getDocs(accountsCollectionRef);
-//         setAccounts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-//       } catch (err) {
-//         console.log(err.message);
-//       }
-//     };
-//     getAccounts();
-//   }, []);
+  useEffect(() => {
+    const getAccounts = async () => {
+      try {
+        // const { docs } = await getDocs(accountsCollectionRef);
+        // setAccounts(docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+    getAccounts();
+  }, []);
 
   const renderAccounts = () => {
     return accounts.map((account) => {
       return (
         <div className="account" key={account.id}>
-          <h1>Name: {account.name}</h1>
-          <h2>publicKey: {account.publicKey}</h2>
+          <h2>Name: {account.accountName}</h2>
+          <h3>Subname: {account.accountSubname}</h3>
         </div>
       );
     });
@@ -59,7 +59,7 @@ const Home = () => {
         <div className="accounts-gallery">{renderAccounts()}</div>
       </div>
       {isCreateAccount && (
-        <CreateAccount collectionRef={accountsCollectionRef} />
+        <CreateAccount />
       )}
     </div>
   );
