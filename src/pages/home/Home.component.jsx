@@ -21,6 +21,7 @@ const Home = () => {
       try {
         const { docs } = await getDocs(collection(db, "accounts"))
         setAccounts(docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        console.log('Home useEffect');
       } catch (err) {
         console.log(err.message);
       };

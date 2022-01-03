@@ -2,20 +2,27 @@ import { RiFileCopyFill } from "react-icons/ri";
 import { useRef, useState } from "react";
 import "./account.styles.scss";
 import Password from "../../modules/Password";
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from "../../firebase/firebase-config";
+import { useDispatch } from "react-redux";
+import { accountChangedRenderAction } from "../../store/actions/actions";
 
 export default function Account({ account }) {
+  const dispatch = useDispatch();
   const toggleRef = useRef();
   const [privateKey, setPrivateKey] = useState("");
   const [output, setOutput] = useState("");
+  const [isMoreDisplayed, setIsMoreDisplayed] = useState(false);
 
   const toggleDisplay = () => {
-    if (toggleRef.current.style.display === "none") {
+    if (!isMoreDisplayed) {
       toggleRef.current.style.display = "flex";
-      toggleRef.current.style.display = "flex";
+      setIsMoreDisplayed(true);
     } else {
       toggleRef.current.style.display = "none";
       setPrivateKey("");
       setOutput("");
+      setIsMoreDisplayed(false);
     }
   };
 
@@ -46,6 +53,15 @@ export default function Account({ account }) {
     }
   };
 
+  const deleteAccount = async () => {
+    try {
+      await deleteDoc(doc(db, "accounts", account.id));
+      dispatch(accountChangedRenderAction());
+    } catch(err) {
+      console.log(err.message);
+    }
+  }
+
   return (
     <div className="account">
       <div className="account-names" onClick={toggleDisplay}>
@@ -53,6 +69,10 @@ export default function Account({ account }) {
         <p className="account-subname">{account.accountSubname}</p>
       </div>
       <div ref={toggleRef} className="account-more">
+        <div className="account-more-bar">
+          <button className="delete-account-button" onClick={deleteAccount}>Delete</button>
+          <button className="edit-account-button">Edit</button>
+        </div>
         <input
           className="private-key-input"
           type="password"

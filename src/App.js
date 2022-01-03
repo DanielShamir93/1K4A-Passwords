@@ -12,7 +12,6 @@ function App() {
       <Navbar />
       <AuthRoute path="/" redirectPath='/home' exact component={Signup} />
       <AuthRoute path="/login" redirectPath="/home" component={Login} />
-      <div></div>
       <ProtectedRoute path="/home" redirectPath="/" component={Home} />
     </Router>
   );
