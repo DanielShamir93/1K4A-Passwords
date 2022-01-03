@@ -3,8 +3,10 @@
     flex-direction: column;
     align-items: center;
     padding: 2vmin;
-    background: rgb(241, 233, 124);
+    background: rgba(255, 217, 45, 0.4);
     border-radius: 2vmin;
+    border: 0.3vmin solid gray;
+    box-shadow: 0 0 1vmin black;
 
     .account-names {
         display: flex;
@@ -30,9 +32,10 @@
         align-items: center;
         padding: 1vmin;
         height: 20vmin;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 2vmin;
         opacity: 0;
         animation: open-account-animation 1.5s forwards ease;
-        background: rgb(241, 233, 124);
 
         @keyframes open-account-animation {
             to {
@@ -63,6 +66,7 @@
             border: none;
             text-align: center;
             width: 35vmin;
+            background: white;
         }
 
         .get-password-button {

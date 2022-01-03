@@ -24,11 +24,11 @@ const Home = () => {
         setIsLoading(true);
         const { docs } = await getDocs(collection(db, "accounts"))
         setAccounts(docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        setIsLoading(false);
         console.log('Home useEffect');
       } catch (err) {
         console.log(err.message);
       };
+      setIsLoading(false);
     };
     getAccounts();
   }, [statesObject.accountChangedRender]);

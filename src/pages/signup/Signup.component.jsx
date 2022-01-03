@@ -36,11 +36,11 @@ export default function Signup() {
             isValidInput();
             await createUserWithEmailAndPassword(auth, statesObject.email, statesObject.password);
             dispatch(isAuthAction(true));
-            setIsLoading(false);
             history.push('/home');
         } catch (err) {
             setComment(err.message);
         }
+        setIsLoading(false);
     } 
 
     const isValidInput = () => {

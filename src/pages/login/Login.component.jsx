@@ -31,11 +31,11 @@ export default function Login() {
             isValidInput();
             await signInWithEmailAndPassword(auth, statesObject.email, statesObject.password);
             dispatch(isAuthAction(true));
-            setIsLoading(false);
             history.push('/home');
         } catch (err) {
             setComment(err.message);
         }
+        setIsLoading(false);
     } 
 
     const isValidInput = () => {
