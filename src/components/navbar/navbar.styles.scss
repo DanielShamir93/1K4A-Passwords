@@ -6,16 +6,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgb(42, 40, 40);
-    box-shadow: 0 0.2vmin 1vmin black;
+    background: rgba(163, 4, 4, 0.726);
 
     .leftside {
         display: flex;
         align-items: center;
 
         .logo {
+            border-radius: 0 5vmin 0 0;
+            background: rgba(0, 0, 0, 0.329);
             margin: 0;
-            background-image: url(../../assets/1K4A_key_logo.png);
+            background-image: url(../../assets/images/1K4A_key_logo.png);
             background-repeat: no-repeat;
             background-size: contain;
             width: 15vmin;

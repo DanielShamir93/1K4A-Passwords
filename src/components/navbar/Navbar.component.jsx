@@ -39,11 +39,13 @@ export default function Navbar() {
                     term="Tutorial"
                     reactIconComponent={<AiOutlineQuestionCircle className="react-icon" />} 
                 />
-                <IconedButton 
-                    myStyle={{fontSize: "2vmin"}}
-                    term="About" 
-                    reactIconComponent={<FiInfo className="react-icon" />} 
-                />
+                <Link to={"/about"}>
+                    <IconedButton 
+                        myStyle={{fontSize: "2vmin"}}
+                        term="About" 
+                        reactIconComponent={<FiInfo className="react-icon" />} 
+                    />
+                </Link>
                 <Link to={statesObject.isAuth ? "/home" : "login"} >
                     <IconedButton
                         onClick={logout}

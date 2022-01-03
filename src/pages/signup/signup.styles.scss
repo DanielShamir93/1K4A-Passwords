@@ -2,9 +2,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 90vh;
     width: 45vw;
-    background: rgba(255, 0, 0, 0.2);
+    background: rgb(246, 242, 242);
+    border-radius: 0 0 10vmin 0;
 
     .signup-view {
         display: flex;
