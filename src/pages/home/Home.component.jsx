@@ -3,14 +3,18 @@ import { FcPlus } from "react-icons/fc";
 import { HiMinusCircle } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import CreateAccount from "../../components/createAccount/CreateAccount.component";
-import "./home.styles.scss";
 import { db } from "../../firebase/firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 import Account from "../../components/account/Account.component";
+import "./home.styles.scss";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   const [accounts, setAccounts] = useState([]);
-  const [isCreateAccount, setIsCreateAccount] = useState(false);
+  const [isCreateAccountOpen, setIsCreateAccountOpen] = useState(false);
+  const statesObject = useSelector((state) => {
+    return {accountChangedRender: state.accountChangedRender}
+  })
 
   useEffect(() => {
     const getAccounts = async () => {
@@ -22,10 +26,10 @@ const Home = () => {
       };
     };
     getAccounts();
-  }, []);
+  }, [statesObject.accountChangedRender]);
 
   const closeCreateAccount = () => {
-    setIsCreateAccount(false);
+    setIsCreateAccountOpen(false);
   }
 
   const renderAccounts = () => {
@@ -40,27 +44,27 @@ const Home = () => {
     <div className="Home">
       <div className="home-layout">
         <div className="toolbar">
-          {isCreateAccount ? (
+          {isCreateAccountOpen ? (
             <HiMinusCircle
               style={{color: "#9e2c2c"}}
               className="create-account-icon"
               onClick={() => {
-                setIsCreateAccount(!isCreateAccount);
+                setIsCreateAccountOpen(!isCreateAccountOpen);
               }}
             />
           ) : (
             <FcPlus
               className="create-account-icon"
               onClick={() => {
-                setIsCreateAccount(!isCreateAccount);
+                setIsCreateAccountOpen(!isCreateAccountOpen);
               }}
             />
           )}
         </div>
         <div className="accounts-gallery">{renderAccounts()}</div>
       </div>
-      {isCreateAccount && (
-        <CreateAccount closeCreateAccount={closeCreateAccount}/>
+      {isCreateAccountOpen && (
+        <CreateAccount closeCreateAccount={closeCreateAccount} />
       )}
     </div>
   );

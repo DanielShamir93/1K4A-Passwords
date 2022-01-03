@@ -1,4 +1,4 @@
-import { SET_EMAIL, SET_PASSWORD, SET_CONFIRM, IS_AUTH } from './actionsTypes';
+import { SET_EMAIL, SET_PASSWORD, SET_CONFIRM, IS_AUTH, ACCOUNT_CHANGED_RENDER } from './actionsTypes';
 
 export const setEmailAction = (email = '') => {
   return (dispatch, getState) => {
@@ -35,3 +35,13 @@ export const isAuthAction = (isAuth = false) => {
     })
   }
 }
+
+export const accountChangedRenderAction = () => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: ACCOUNT_CHANGED_RENDER,
+    })
+  }
+}
+
+

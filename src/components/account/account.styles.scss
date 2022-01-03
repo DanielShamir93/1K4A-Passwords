@@ -29,6 +29,15 @@
         align-items: center;
         padding: 1vmin;
         height: 20vmin;
+        opacity: 0;
+        animation: open-account-animation 1.5s forwards ease;
+
+        @keyframes open-account-animation {
+            to {
+                opacity: 1;
+            }
+        }
+
 
         .private-key-input {
             font-size: 2vmin;

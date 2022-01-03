@@ -19,6 +19,7 @@
         .accounts-gallery {
             display: flex;
             align-items: flex-start;
+            align-content: flex-start;
             flex-wrap: wrap;
             gap: 2vmin;
             width: 90vw;
@@ -26,5 +27,4 @@
             background: gray;
         }
     }
-
 }

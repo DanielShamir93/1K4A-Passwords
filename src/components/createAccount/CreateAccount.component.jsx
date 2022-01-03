@@ -5,8 +5,11 @@ import ToggleButtonsMultiple from "../toggleButtonsMultiple/ToggleButtonsMultipl
 import Password from "../../modules/Password";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";
+import { useDispatch } from "react-redux";
+import { accountChangedRenderAction } from "../../store/actions/actions";
 
 export default function CreateAccount({ closeCreateAccount }) {
+  const dispatch = useDispatch();
   const [output, setOutput] = useState("");
   const [accountName, setAccountName] = useState("");
   const [accountSubname, setAccountSubname] = useState("");
@@ -45,7 +48,7 @@ export default function CreateAccount({ closeCreateAccount }) {
           isPassHasSymbol: isChecked.isSymbolsChecked,
         };
         await addDoc(collection(db, "accounts"), newAccount);
-
+        dispatch(accountChangedRenderAction());
         resetCreateAccountForm();
       }
     } catch (err) {
@@ -74,7 +77,7 @@ export default function CreateAccount({ closeCreateAccount }) {
     });
     closeCreateAccount();
   };
-// _e47gje=:=pn
+
   const outputPassword = () => {
     if (accountName.length > 0) {
       if (privateKey.length > 0) {
