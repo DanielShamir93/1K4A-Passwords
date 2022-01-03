@@ -1,13 +1,14 @@
 .Home {
 
     .home-layout {
-        margin-top: 15vh;
+        margin-top: 10vh;
         display: flex;
         
         .toolbar {
             width: 5vw;
             display: flex;
             justify-content: center;
+            background: rgba(128, 128, 128, 0.2);
 
             .create-account-icon {
                 padding-top: 5vh;
@@ -17,14 +18,15 @@
         }
         
         .accounts-gallery {
+            background: rgba(251, 164, 180, 0.2);
+            padding: 5vmin;
             display: flex;
             align-items: flex-start;
             align-content: flex-start;
             flex-wrap: wrap;
             gap: 2vmin;
-            width: 90vw;
-            height: 80vh;
-            background: gray;
+            width: 95vw;
+            height: 90vh;
         }
     }
 }

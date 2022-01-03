@@ -8,7 +8,7 @@ import { db } from "../../firebase/firebase-config";
 import { useDispatch } from "react-redux";
 import { accountChangedRenderAction } from "../../store/actions/actions";
 
-export default function CreateAccount({ closeCreateAccount }) {
+export default function CreateAccount({ closeCreateAccount, setIsLoading}) {
   const dispatch = useDispatch();
   const [output, setOutput] = useState("");
   const [accountName, setAccountName] = useState("");
@@ -31,6 +31,8 @@ export default function CreateAccount({ closeCreateAccount }) {
 
   const createAccount = async () => {
     try {
+      setIsLoading(true);
+      closeCreateAccount();
       if (isValidAccount) {
         const newAccount = {
           accountName,
@@ -75,7 +77,6 @@ export default function CreateAccount({ closeCreateAccount }) {
       isLowercaseChecked: true,
       isSymbolsChecked: true,
     });
-    closeCreateAccount();
   };
 
   const outputPassword = () => {

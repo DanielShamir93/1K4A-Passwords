@@ -1,6 +1,7 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import Signup from './pages/signup/Signup.component';
-import Login from './pages/login/components/Login.component';
+// import Signup from './pages/signup/Signup.component';
+import LandingPage from "./pages/landing-page/LandingPage.component";
+import Login from './pages/login/Login.component';
 import Home from './pages/home/Home.component';
 import ProtectedRoute from './components/protectedRoute/ProtectedRoute.component';
 import AuthRoute from './components/authRoute/AuthRoute.component';
@@ -10,7 +11,7 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <AuthRoute path="/" redirectPath='/home' exact component={Signup} />
+      <AuthRoute path="/" redirectPath='/home' exact component={LandingPage} />
       <AuthRoute path="/login" redirectPath="/home" component={Login} />
       <ProtectedRoute path="/home" redirectPath="/" component={Home} />
     </Router>

@@ -1,20 +1,22 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom"
-import { auth } from "../../../firebase/firebase-config";
+import { auth } from "../../firebase/firebase-config";
 import Box from '@mui/material/Box';
 import { signInWithEmailAndPassword } from "firebase/auth";
-import PasswordInput from '../../../components/mui/PasswordInput.components';
-import TextFieldInput from '../../../components/mui/TextFieldInput.component';
+import PasswordInput from '../../components/mui/PasswordInput.components';
+import TextFieldInput from '../../components/mui/TextFieldInput.component';
 import { useSelector } from 'react-redux';
-import BasicButton from '../../../components/mui/BasicButton.component';
+import BasicButton from '../../components/mui/BasicButton.component';
 import { useDispatch } from "react-redux";
-import { isAuthAction } from "../../../store/actions/actions";
-import '../login.styles.scss';
+import { isAuthAction } from "../../store/actions/actions";
+import Spinner from "../../components/spinner/Spinner.component";
+import './login.styles.scss';
 
 export default function Login() {
+    const dispatch = useDispatch();
     const [comment, setComment] = useState('');
     const history = useHistory();
-    const dispatch = useDispatch();
+    const [isLoading, setIsLoading] = useState(false);
     const statesObject = useSelector((state) => {
         return {
             email: state.email,
@@ -25,9 +27,11 @@ export default function Login() {
 
     const login = async () => {
         try {
+            setIsLoading(true);
             isValidInput();
             await signInWithEmailAndPassword(auth, statesObject.email, statesObject.password);
             dispatch(isAuthAction(true));
+            setIsLoading(false);
             history.push('/home');
         } catch (err) {
             setComment(err.message);
@@ -69,6 +73,7 @@ export default function Login() {
                     />
                 </div>
             </div>
+            {isLoading && <Spinner />}
         </div>
     )
 }

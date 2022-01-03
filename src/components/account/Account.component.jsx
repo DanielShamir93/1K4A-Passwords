@@ -7,7 +7,7 @@ import { db } from "../../firebase/firebase-config";
 import { useDispatch } from "react-redux";
 import { accountChangedRenderAction } from "../../store/actions/actions";
 
-export default function Account({ account }) {
+export default function Account({ account, setIsLoading }) {
   const dispatch = useDispatch();
   const toggleRef = useRef();
   const [privateKey, setPrivateKey] = useState("");
@@ -55,6 +55,7 @@ export default function Account({ account }) {
 
   const deleteAccount = async () => {
     try {
+      setIsLoading(true);
       await deleteDoc(doc(db, "accounts", account.id));
       dispatch(accountChangedRenderAction());
     } catch(err) {

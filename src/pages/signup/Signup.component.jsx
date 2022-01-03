@@ -11,11 +11,13 @@ import UnderlineLink from '../../components/mui/UnderlineLink.component';
 import './signup.styles.scss';
 import { useDispatch } from "react-redux";
 import { isAuthAction } from "../../store/actions/actions";
+import Spinner from "../../components/spinner/Spinner.component";
 
 export default function Signup() {
+    const dispatch = useDispatch();
     const [comment, setComment] = useState('');
     const history = useHistory();
-    const dispatch = useDispatch();
+    const [isLoading, setIsLoading] = useState(false);
     const statesObject = useSelector((state) => {
         return {
             email: state.email,
@@ -30,9 +32,11 @@ export default function Signup() {
 
     const signup = async () => {
         try {
+            setIsLoading(true);
             isValidInput();
             await createUserWithEmailAndPassword(auth, statesObject.email, statesObject.password);
             dispatch(isAuthAction(true));
+            setIsLoading(false);
             history.push('/home');
         } catch (err) {
             setComment(err.message);
@@ -93,6 +97,7 @@ export default function Signup() {
                     />
                 </div>
             </div>
+            {isLoading && <Spinner />}
         </div>
     )
 }

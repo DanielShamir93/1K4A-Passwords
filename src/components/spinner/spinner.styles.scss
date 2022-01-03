@@ -1,0 +1,31 @@
+.Spinner {
+    position: absolute;
+    left: 50%;
+    top: 30vh;
+    transform: translate(-50%);
+
+    .spinner-container {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        background-image: url(../../assets/title_logo.png);
+        background-size: 15vmin;
+        background-repeat: no-repeat;
+        background-position: 7vmin 5vmin;
+        
+        .loading-spinner {
+            width: 30vmin;
+            height: 30vmin;
+            border-radius: 50%;
+            border: 1vmin solid black;
+            border-color: #000000 #FF5256 #F9ED52 #3C72BF;
+            margin-top: 10vmin;
+            animation: spinner-animation 1.5s linear infinite;
+        }
+    }
+}
+
+@keyframes spinner-animation {
+    to {
+        transform: rotate(360deg);
+    }
+}
