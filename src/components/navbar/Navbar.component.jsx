@@ -27,17 +27,15 @@ export default function Navbar() {
     return (
         <div className="Navbar">
             <div className="leftside">
-                <figure className="logo">logo</figure>
+                <figure className="logo"></figure>
                 <Link to="/home">
                     <IconedButton
-                        myStyle={{fontSize: "2vmin"}}
-                        reactIconComponent={<AiOutlineHome className="react-icon" style={{fontSize: "3vmin"}} />} 
+                        reactIconComponent={<AiOutlineHome className="react-icon" style={{fontSize: "4vmin"}} />} 
                     />
                 </Link>
             </div>
             <div className="rightside">
                 <IconedButton
-                    myStyle={{fontSize: "2vmin"}}
                     term="Tutorial"
                     reactIconComponent={<AiOutlineQuestionCircle className="react-icon" />} 
                 />
@@ -48,7 +46,6 @@ export default function Navbar() {
                 />
                 <Link to={statesObject.isAuth ? "/home" : "login"} >
                     <IconedButton
-                        myStyle={{fontSize: "2vmin"}}
                         onClick={logout}
                         term={statesObject.isAuth ? "Logout" : "Login"} 
                         reactIconComponent={<FiLogIn className="react-icon" />} 

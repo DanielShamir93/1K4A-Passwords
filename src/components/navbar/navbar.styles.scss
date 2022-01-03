@@ -1,7 +1,7 @@
 .Navbar {
     width: 100vw;
-    height: 6vh;
-    position: fixed;
+    height: 10vh;
+    position: absolute;
     top: 0;
     display: flex;
     justify-content: space-between;
@@ -10,11 +10,15 @@
 
     .leftside {
         display: flex;
+        align-items: center;
 
         .logo {
             margin: 0;
-            padding: 1vmin;
-            font-size: 2vmin;
+            background-image: url(../../assets/1K4A_key_logo.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 15vmin;
+            height: 10vmin;
         }
     }
 
