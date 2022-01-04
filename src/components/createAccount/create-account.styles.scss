@@ -1,78 +1,88 @@
 .CreateAccount {
     position: absolute;
     bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 100%);
-    animation: create-account-animation 1s forwards ease;
-
-    @keyframes create-account-animation {
-        to {
-            transform: translate(-50%);
-        }
-    }
+    background:transparent;
+    left: 5vw;
+    width: 95vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
     
-    .create-account-form {
-        height: 90vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-        background: rgba(128, 128, 128, 0.8);
-        border-radius: 10vmin 10vmin 0 0;
-        padding: 2vmin;
-        font-size: 3vmin;
+    .create-account-background {
+        margin-top: 2vh;
+        transform: translateY(100%);
+        animation: create-account-animation 1s forwards ease;
         
-        .account-details {
-            border-radius: 2vmin 2vmin 0 0;
-            border: 0.5vmin solid white;
-
-            input {
-                font-size: 2vmin;
-                padding: 1vh 0;
-                border-radius: 1vmin;
-                margin: 0.5vmin;
-                border: none;
+        @keyframes create-account-animation {
+            to {
+                transform: translateY(0);
             }
         }
-
-        .password-details {
-            border-radius: 0 0 2vmin 2vmin;
-            border: 0.5vmin solid white;
+        
+        .create-account-form {
+            border-radius: 10vmin 10vmin 0 0;
+            height: 88vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1vh;
-
-            input {
-                font-size: 2vmin;
-                padding: 1vh 0;
+            justify-content: space-around;
+            background: rgba(128, 128, 128, 0.8);
+            padding: 2vmin;
+            font-size: 3vmin;
+            border-top: 1vmin rgb(87, 87, 87) solid;
+            box-shadow: 0 0.8vmin 2vmin black;
+            
+            .account-details {
+                border-radius: 2vmin 2vmin 0 0;
+                border: 0.5vmin solid white;
+    
+                input {
+                    font-size: 2vmin;
+                    padding: 1vh 0;
+                    border-radius: 1vmin;
+                    margin: 0.5vmin;
+                    border: none;
+                }
+            }
+    
+            .password-details {
+                border-radius: 0 0 2vmin 2vmin;
+                border: 0.5vmin solid white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1vh;
+    
+                input {
+                    font-size: 2vmin;
+                    padding: 1vh 0;
+                    border-radius: 1vmin;
+                    border: none;
+                }
+    
+                .generate-button {
+                    margin-top: 0.5vh;
+                    padding: 0.5vmin;
+                    border: none;
+                    border-radius: 1vmin;
+                    cursor: pointer;
+                }
+            }
+    
+            .output {
+                text-align: center;
                 border-radius: 1vmin;
                 border: none;
             }
-
-            .generate-button {
-                margin-top: 0.5vh;
+    
+            .submit-button {
+                font-size: 3vmin;
                 padding: 0.5vmin;
                 border: none;
                 border-radius: 1vmin;
                 cursor: pointer;
-            }
+            }        
         }
-
-        .output {
-            text-align: center;
-            border-radius: 1vmin;
-            border: none;
-        }
-
-        .submit-button {
-            font-size: 3vmin;
-            padding: 0.5vmin;
-            border: none;
-            border-radius: 1vmin;
-            cursor: pointer;
-        }
-
-        
     }
+
 }

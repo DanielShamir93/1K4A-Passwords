@@ -68,6 +68,10 @@ export default function Account({ account, setIsLoading, toggleCreateAccountComp
     toggleCreateAccountComponent(true);
   }
 
+  const copyPassword = () => {
+    console.log('copy')
+  }
+
   return (
     <div className="account">
       <div className="account-names" onClick={toggleDisplay}>
@@ -99,7 +103,7 @@ export default function Account({ account, setIsLoading, toggleCreateAccountComp
             value={output}
             readOnly
           />
-          <RiFileCopyFill className="copy-button" />
+          <RiFileCopyFill className="copy-button" onClick={copyPassword}/>
         </div>
       </div>
     </div>
