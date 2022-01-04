@@ -31,9 +31,10 @@
         justify-content: space-around;
         align-items: center;
         padding: 1vmin;
-        height: 20vmin;
-        background: rgba(0, 0, 0, 0.1);
+        height: 25vmin;
+        background: rgba(255, 255, 255, 0.2);
         border-radius: 2vmin;
+        box-shadow: 0 0 0.5vmin black;
         opacity: 0;
         animation: open-account-animation 1.5s forwards ease;
 
@@ -48,28 +49,52 @@
             justify-content: space-between;
             align-self: flex-end;
             
-            button {
+            .delete-account-button,
+            .edit-account-button {
                 font-size: 1.7vmin;
                 border: none;
                 padding: 0.5vmin;
                 border-radius: 1vmin;
                 cursor: pointer;
                 margin: 0 0.5vmin;
+                background: none;
+                font-size: 4vmin;
+            }
+
+            .delete-account-button:hover,
+            .edit-account-button:hover {
+                box-shadow: 0 0 0.5vmin black;
+            }
+
+            .delete-account-button:active,
+            .edit-account-button:active {
+                opacity: 0.5;
             }
         }
 
-        .private-key-input {
-            font-size: 2vmin;
-            padding: 1vh 0;
-            border-radius: 1vmin;
-            margin: 0.5vmin;
-            border: none;
-            text-align: center;
-            width: 35vmin;
+        .private-key {
+            display: flex;
+            align-items: center;
+
+            &-icon {
+                font-size: 4vmin;
+                cursor: pointer;
+            }
+    
+            &-input {
+                font-size: 2vmin;
+                padding: 1vh 0;
+                border-radius: 1vmin;
+                margin: 0.5vmin;
+                border: none;
+                text-align: center;
+                width: 35vmin;
+                box-shadow: 0 0 0.5vmin black;
+            }
         }
 
         .get-password-button {
-            font-size: 2.5vmin;
+            font-size: 8vmin;
             padding: 0.5vmin;
             border: none;
             border-radius: 1vmin;
@@ -86,8 +111,9 @@
                 border-radius: 1vmin;
                 margin: 0.5vmin;
                 border: none;
+                box-shadow: 0 0 0.5vmin black;
                 text-align: center;
-                width: 30vmin;
+                width: 35vmin;
             }
 
             .copy-button {
@@ -95,6 +121,10 @@
                 border: none;
                 border-radius: 1vmin;
                 cursor: pointer;
+            }
+
+            .copy-button:active {
+                opacity: 0.5;
             }
         }
     }

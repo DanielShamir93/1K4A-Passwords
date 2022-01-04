@@ -34,8 +34,9 @@ export default function Login() {
             history.push('/home');
         } catch (err) {
             setComment(err.message);
+            setIsLoading(false);
         }
-        setIsLoading(false);
+        
     } 
 
     const isValidInput = () => {

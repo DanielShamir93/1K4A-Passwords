@@ -35,10 +35,12 @@ export default function Navbar() {
                 </Link>
             </div>
             <div className="rightside">
-                <IconedButton
-                    term="Tutorial"
-                    reactIconComponent={<AiOutlineQuestionCircle className="react-icon" />} 
-                />
+                <Link to={"/tutorial"}>
+                    <IconedButton 
+                        term="Tutorial" 
+                        reactIconComponent={<AiOutlineQuestionCircle className="react-icon" />} 
+                    />
+                </Link>
                 <Link to={"/about"}>
                     <IconedButton 
                         myStyle={{fontSize: "2vmin"}}

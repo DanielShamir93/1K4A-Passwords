@@ -6,6 +6,7 @@ import ProtectedRoute from './components/protectedRoute/ProtectedRoute.component
 import AuthRoute from './components/authRoute/AuthRoute.component';
 import Navbar from './components/navbar/Navbar.component';
 import About from "./pages/about/About.component";
+import Tutorial from "./pages/tutorial/Tutorial.component";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <AuthRoute path="/login" redirectPath="/home" component={Login} />
       <ProtectedRoute path="/home" redirectPath="/" component={Home} />
       <Route path="/about" component={About} />
+      <Route path="/tutorial" component={Tutorial} />
     </Router>
   );
 }

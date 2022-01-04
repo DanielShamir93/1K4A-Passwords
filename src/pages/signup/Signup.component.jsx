@@ -39,8 +39,8 @@ export default function Signup() {
             history.push('/home');
         } catch (err) {
             setComment(err.message);
+            setIsLoading(false);
         }
-        setIsLoading(false);
     } 
 
     const isValidInput = () => {

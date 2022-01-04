@@ -1,4 +1,6 @@
-import { RiFileCopyFill } from "react-icons/ri";
+import { RiFileCopyLine } from "react-icons/ri";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
+import { FcUnlock, FcLock, FcKey } from "react-icons/fc";
 import { useRef, useState } from "react";
 import "./account.styles.scss";
 import Password from "../../modules/Password";
@@ -69,7 +71,7 @@ export default function Account({ account, setIsLoading, toggleCreateAccountComp
   }
 
   const copyPassword = () => {
-    console.log('copy')
+    navigator.clipboard.writeText(output)
   }
 
   return (
@@ -80,21 +82,23 @@ export default function Account({ account, setIsLoading, toggleCreateAccountComp
       </div>
       <div ref={toggleRef} className="account-more">
         <div className="account-more-bar">
-          <button className="delete-account-button" onClick={deleteAccount}>Delete</button>
-          <button className="edit-account-button" onClick={editAccount}>Edit</button>
+          <AiOutlineDelete className="delete-account-button" onClick={deleteAccount}/>
+          <AiOutlineEdit className="edit-account-button" onClick={editAccount} />
         </div>
-        <input
-          className="private-key-input"
-          type="password"
-          placeholder="Private Key"
-          onChange={(e) => {
-            setPrivateKey(e.target.value);
-          }}
-          value={privateKey}
-        />
-        <button className="get-password-button" onClick={getPassword}>
-          Get Password
-        </button>
+        <div className="private-key">
+          <label htmlFor="private-key-input"><FcKey className="private-key-icon"/></label>
+          <input
+            className="private-key-input"
+            id="private-key-input"
+            type="password"
+            placeholder="Private Key"
+            onChange={(e) => {
+              setPrivateKey(e.target.value);
+            }}
+            value={privateKey}
+          />
+        </div>
+        {privateKey.length > 0 ? <FcUnlock className="get-password-button" onClick={getPassword} /> : <FcLock className="get-password-button" onClick={getPassword} />}
         <div className="output">
           <input
             className="output-input"
@@ -103,9 +107,10 @@ export default function Account({ account, setIsLoading, toggleCreateAccountComp
             value={output}
             readOnly
           />
-          <RiFileCopyFill className="copy-button" onClick={copyPassword}/>
+          <RiFileCopyLine className="copy-button" onClick={copyPassword} />
         </div>
       </div>
     </div>
   );
 }
+
