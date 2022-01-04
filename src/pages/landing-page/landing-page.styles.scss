@@ -4,6 +4,7 @@
     background: rgba(0, 0, 0, 0.9);
 
     .landing-page-right {
+        height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -20,6 +21,7 @@
             }
 
             &-content {
+                text-align: center;
                 padding-top: 2vmin;
                 font-size: 4vmin;
                 color: white;
