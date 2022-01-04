@@ -52,7 +52,6 @@ const Home = () => {
           {!isLoading && <div>
               {isCreateAccountOpen ? (
                 <HiMinusCircle
-                  style={{color: "#9e2c2c"}}
                   className="create-account-icon"
                   onClick={() => {
                     setIsCreateAccountOpen(!isCreateAccountOpen);
