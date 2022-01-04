@@ -9,7 +9,7 @@ export default function LandingPage() {
             </div>
             <div className="landing-page-right">
                 <div className="text">
-                    <p className="text-title">Welcome To 1 Key For All Passwords</p>
+                    <p className="text-title">Welcome To One Key For All Passwords</p>
                     <p className="text-content">An app for creating and recovering passwords without saving the passwords in any database.</p>
                 </div>
                 <figure className="image-wrapper"></figure>

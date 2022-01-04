@@ -5,9 +5,9 @@ import Password from "../../modules/Password";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";
 import { useDispatch } from "react-redux";
-import { accountChangedRenderAction } from "../../store/actions/actions";
+import { accountChangedRenderAction, editAccountAction } from "../../store/actions/actions";
 
-export default function Account({ account, setIsLoading }) {
+export default function Account({ account, setIsLoading, toggleCreateAccountComponent }) {
   const dispatch = useDispatch();
   const toggleRef = useRef();
   const [privateKey, setPrivateKey] = useState("");
@@ -63,6 +63,11 @@ export default function Account({ account, setIsLoading }) {
     }
   }
 
+  const editAccount = () => {
+    dispatch(editAccountAction(account));
+    toggleCreateAccountComponent(true);
+  }
+
   return (
     <div className="account">
       <div className="account-names" onClick={toggleDisplay}>
@@ -72,7 +77,7 @@ export default function Account({ account, setIsLoading }) {
       <div ref={toggleRef} className="account-more">
         <div className="account-more-bar">
           <button className="delete-account-button" onClick={deleteAccount}>Delete</button>
-          <button className="edit-account-button">Edit</button>
+          <button className="edit-account-button" onClick={editAccount}>Edit</button>
         </div>
         <input
           className="private-key-input"

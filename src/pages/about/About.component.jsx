@@ -8,10 +8,10 @@ export default function About() {
                 <p>Version: 1.0.0</p>
             </div>
             <div className="follow-me">
-                <p class="follow-me-title">
+                <p className="follow-me-title">
                     <span>&#128064;</span> Follow Me
                 </p>
-                <div class="follow-me-icons">
+                <div className="follow-me-icons">
                     <a href="https://www.linkedin.com/in/daniel-shamir-3a22ba168/" target="_black"><figure className="linkedin-icon"></figure></a>
                     <a href="https://github.com/DanielShamir93" target="_black"><figure className="github-icon"></figure></a>
                 </div>

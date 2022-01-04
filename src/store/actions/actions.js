@@ -1,4 +1,4 @@
-import { SET_EMAIL, SET_PASSWORD, SET_CONFIRM, IS_AUTH, ACCOUNT_CHANGED_RENDER } from './actionsTypes';
+import { SET_EMAIL, SET_PASSWORD, SET_CONFIRM, IS_AUTH, ACCOUNT_CHANGED_RENDER, EDIT_ACCOUNT } from './actionsTypes';
 
 export const setEmailAction = (email = '') => {
   return (dispatch, getState) => {
@@ -44,4 +44,11 @@ export const accountChangedRenderAction = () => {
   }
 }
 
-
+export const editAccountAction = (account = {}) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: EDIT_ACCOUNT,
+      payload: account
+    })
+  }
+}

@@ -3,6 +3,7 @@ import passwordReducer from "./signup-reducers/passwordReducer";
 import confirmReducer from "./signup-reducers/confirmReducer";
 import isAuthReducer from "./signup-reducers/isAuthReducer";
 import accountChangedRenderReducer from "./accountChangedRenderReducer";
+import editAccountReducer from "./editAccountReducer";
 import { combineReducers } from "redux";
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     password: passwordReducer,
     confirm: confirmReducer,
     isAuth: isAuthReducer,
-    accountChangedRender: accountChangedRenderReducer
+    accountChangedRender: accountChangedRenderReducer,
+    editAccount: editAccountReducer
 })
 
 export default persistReducer(persistConfig, rootReducer);

@@ -1,14 +1,15 @@
 import "./create-account.styles.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import hash from "object-hash";
 import ToggleButtonsMultiple from "../toggleButtonsMultiple/ToggleButtonsMultiple.component";
 import Password from "../../modules/Password";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";
-import { useDispatch } from "react-redux";
-import { accountChangedRenderAction } from "../../store/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { accountChangedRenderAction, editAccountAction } from "../../store/actions/actions";
 
-export default function CreateAccount({ closeCreateAccount, setIsLoading}) {
+
+export default function CreateAccount({ toggleCreateAccountComponent, setIsLoading }) {
   const dispatch = useDispatch();
   const [output, setOutput] = useState("");
   const [accountName, setAccountName] = useState("");
@@ -28,13 +29,42 @@ export default function CreateAccount({ closeCreateAccount, setIsLoading}) {
     isLowercaseChecked: true,
     isSymbolsChecked: true,
   });
+  const statesObject = useSelector((state) => {
+    return {editAccount: state.editAccount}
+  });
+
+  useEffect(() => {
+    if (Object.keys(statesObject.editAccount).length > 0) {
+      // In edit account mode
+      setAccountName(statesObject.editAccount.accountName);
+      setAccountSubname(statesObject.editAccount.accountSubname);
+      setPassLength(statesObject.editAccount.passLength);
+      setPassStartsWith(statesObject.editAccount.passStartsWith);
+      setPassEndsWith(statesObject.editAccount.passEndsWith);
+      setPassMustContain(statesObject.editAccount.passMustContain);
+      setPassAvoidChars(statesObject.editAccount.passAvoidChars);
+      setPassPattern(statesObject.editAccount.passPattern);
+      setPublicKey(statesObject.editAccount.publicKey);
+      setIsChecked({
+        isDigitsChecked: statesObject.editAccount.isPassHasDigit,
+        isUppercaseChecked: statesObject.editAccount.isPassHasUppercase,
+        isLowercaseChecked: statesObject.editAccount.isPassHasLowercase,
+        isSymbolsChecked: statesObject.editAccount.isPassHasSymbol
+      })
+    }
+    console.log("useEffect from createAccount");
+
+    return (() => {
+      dispatch(editAccountAction({}));
+    })
+
+  }, [statesObject.editAccount, dispatch]);
 
   const createAccount = async () => {
     try {
       setIsLoading(true);
-      closeCreateAccount();
       if (isValidAccount) {
-        const newAccount = {
+        const currAccount = {
           accountName,
           accountSubname,
           passAvoidChars,
@@ -49,9 +79,16 @@ export default function CreateAccount({ closeCreateAccount, setIsLoading}) {
           isPassHasLowercase: isChecked.isLowercaseChecked,
           isPassHasSymbol: isChecked.isSymbolsChecked,
         };
-        await addDoc(collection(db, "accounts"), newAccount);
+
+        if (Object.keys(statesObject.editAccount).length > 0) {
+          // In edit account mode
+          await setDoc(doc(db, "accounts", statesObject.editAccount.id), currAccount);
+        } else {
+          await addDoc(collection(db, "accounts"), currAccount);
+        }
         dispatch(accountChangedRenderAction());
         resetCreateAccountForm();
+        toggleCreateAccountComponent(false);
       }
     } catch (err) {
       console.log(err.massage);

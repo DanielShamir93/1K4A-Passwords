@@ -33,14 +33,14 @@ const Home = () => {
     getAccounts();
   }, [statesObject.accountChangedRender]);
 
-  const closeCreateAccount = () => {
-    setIsCreateAccountOpen(false);
+  const toggleCreateAccountComponent = (boolean) => {
+    setIsCreateAccountOpen(boolean);
   }
 
   const renderAccounts = () => {
     return accounts.map((account) => {
       return (
-        <Account key={account.id} account={account} setIsLoading={setIsLoading} />
+        <Account key={account.id} account={account} setIsLoading={setIsLoading} toggleCreateAccountComponent={toggleCreateAccountComponent} />
       );
     });
   };
@@ -71,7 +71,7 @@ const Home = () => {
         <div className="accounts-gallery">{renderAccounts()}</div>
       </div>
       {isCreateAccountOpen && (
-        <CreateAccount closeCreateAccount={closeCreateAccount} isLoading={isLoading} setIsLoading={setIsLoading} />
+        <CreateAccount toggleCreateAccountComponent={toggleCreateAccountComponent} isLoading={isLoading} setIsLoading={setIsLoading} />
       )}
       {isLoading && <Spinner />}
     </div>
