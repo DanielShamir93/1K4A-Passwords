@@ -1,6 +1,7 @@
 .Toggle-buttons-multiple {
     display: flex;
     justify-content: center;
+    box-shadow: 0 0 0.2vmin black;
 
     input {
         display: none;
@@ -8,25 +9,20 @@
 
     button {
         cursor: pointer;
-        font-size: 1.5vmin;
+        font-size: 1.6vmin;
         border: none;
-        box-shadow: 0 0 0.2vmin black;
         padding: 1vmin;
     }
 
-    .digits-button {
-        border-radius: 2vmin 0 0 2vmin;
-    }
 
-    .symbols-button {
-        border-radius: 0 2vmin 2vmin 0;
-    }
 }
 
 .checked {
-    background: #D45C70;
+    background: #B94444;
+    color: white;
 }
 
 .unchecked {
-    background: #d45c7069;
+    background: rgba(128, 128, 128, 0.3);
+    color: rgba(0, 0, 0, 0.5);
 }

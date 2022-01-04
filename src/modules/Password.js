@@ -34,17 +34,19 @@ export default class Password {
     }
 
     generate = (passLength, passStartsWith, passEndsWidth) => {
-        const passwordLength = passLength - (passStartsWith.length + passEndsWidth.length);
+        if (this.keyboard.length > 0) {
+            const passwordLength = passLength - (passStartsWith.length + passEndsWidth.length);
 
-        this.password += passStartsWith;
-        this.setPasswordByFormula(passwordLength);
-        this.password += passEndsWidth;
+            this.password += passStartsWith;
+            this.setPasswordByFormula(passwordLength);
+            this.password += passEndsWidth;
+        } 
     }
 
     generateFromPattern = (pattern) => {
         const matchesArray = this.breakPatternToArray(pattern);
 
-        matchesArray.forEach((match, index) => {
+        matchesArray.forEach((match) => {
             let modifier = "";
             let modifierAmount = 0;
             if ((modifier = /\\d{\d+}$/.exec(match)) !== null) {

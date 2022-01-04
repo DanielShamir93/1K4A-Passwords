@@ -1,4 +1,5 @@
 import "./create-account.styles.scss";
+import { FcUnlock, FcLock, FcKey } from "react-icons/fc";
 import { useState, useEffect } from "react";
 import hash from "object-hash";
 import ToggleButtonsMultiple from "../toggleButtonsMultiple/ToggleButtonsMultiple.component";
@@ -147,7 +148,7 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
               setOutput(password.getPassword);
             }
           } else {
-            setOutput("Password Length: Between 1 To 40");
+            setOutput("Length: Between 1 To 40");
             setIsValidAccount(false);
           }
         } else {
@@ -169,6 +170,19 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
     cloneIsChecked[statePropertyName] = checkboxElement.checked;
     setIsChecked(cloneIsChecked);
   };
+
+  const setLength = (lengthInputElement) => {
+    if (isNaturalNumber(lengthInputElement.value)) {
+      setPassLength(lengthInputElement.value);
+    } else {
+      lengthInputElement.value = parseInt(lengthInputElement.value) || '';
+        setPassLength(lengthInputElement.value);
+    }
+  } 
+
+  const isNaturalNumber = (string) => {
+    return /^\d+$(?![^\d])/.test(string);
+  }
 
   return (
     <div className="CreateAccount">
@@ -206,44 +220,50 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
                   isChecked={isChecked}
                 />
               </div>
-              <div>
+              <div className="password-length-container">
+                <label htmlFor="password-length">Number OF Characters</label>
                 <input
-                  type="number"
-                  placeholder="Password Length"
-                  min="1"
-                  max="40"
+                  id="password-length"
+                  type="text"
                   onChange={(e) => {
-                    setPassLength(e.target.value);
+                    setLength(e.target);
+                    setOutput("");
                   }}
                   value={passLength}
                 />
               </div>
-              <div>
-                <input
-                  type="text"
-                  placeholder="Starts With"
-                  onChange={(e) => {
-                    setPassStartsWith(e.target.value);
-                  }}
-                  value={passStartsWith}
-                />
+              <div className="password-edges">
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Starts With"
+                    onChange={(e) => {
+                      setPassStartsWith(e.target.value);
+                      setOutput("");
+                    }}
+                    value={passStartsWith}
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Ends With"
+                    onChange={(e) => {
+                      setPassEndsWith(e.target.value);
+                      setOutput("");
+                    }}
+                    value={passEndsWith}
+                  />
+                </div>
               </div>
               <div>
                 <input
                   type="text"
-                  placeholder="Ends With"
-                  onChange={(e) => {
-                    setPassEndsWith(e.target.value);
-                  }}
-                  value={passEndsWith}
-                />
-              </div>
-              <div>
-                <input
-                  type="text"
+                  disabled
                   placeholder="Must Contain"
                   onChange={(e) => {
                     setPassMustContain(e.target.value);
+                    setOutput("");
                   }}
                   value={passMustContain}
                 />
@@ -254,6 +274,7 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
                   placeholder="Avoid Characters"
                   onChange={(e) => {
                     setPassAvoidChars(e.target.value);
+                    setOutput("");
                   }}
                   value={passAvoidChars}
                 />
@@ -264,19 +285,22 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
                   placeholder="Pattern"
                   onChange={(e) => {
                     setPassPattern(e.target.value);
+                    setOutput("");
                   }}
                   value={passPattern}
                 />
               </div>
-              <div>
+              <div className="private-key">
                 <input
                   type="text"
                   placeholder="Private Key"
                   onChange={(e) => {
                     setPrivateKey(e.target.value);
+                    setOutput("");
                   }}
                   value={privateKey}
                 />
+                <FcKey />
               </div>
               <button
                 className="generate-button"
@@ -296,14 +320,17 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
               readOnly
             />
           </div>
-          <button
-            className="submit-button"
-            type="button"
-            onClick={createAccount}
-            disabled={!isValidAccount}
-          >
-            Submit
-          </button>
+          <div className="submit-container">
+            <button
+              className="submit-button"
+              type="button"
+              onClick={createAccount}
+              disabled={!isValidAccount}
+            >
+              Submit
+            </button>
+            {isValidAccount ? <FcUnlock className="lock-icon"/> : <FcLock className="lock-icon"/>}
+          </div>
         </form>
       </div>
     </div>
