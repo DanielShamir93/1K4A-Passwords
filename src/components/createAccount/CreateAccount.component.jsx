@@ -63,8 +63,8 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
 
   const createAccount = async () => {
     try {
-      setIsLoading(true);
       if (isValidAccount) {
+        setIsLoading(true);
         const currAccount = {
           accountName,
           accountSubname,
@@ -90,6 +90,8 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
         dispatch(accountChangedRenderAction());
         resetCreateAccountForm();
         toggleCreateAccountComponent(false);
+      } else {
+        setOutput("Must Generate Password")
       }
     } catch (err) {
       console.log(err.massage);
@@ -325,7 +327,6 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
               className="submit-button"
               type="button"
               onClick={createAccount}
-              disabled={!isValidAccount}
             >
               Submit
             </button>
