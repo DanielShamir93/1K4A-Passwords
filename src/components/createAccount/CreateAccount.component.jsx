@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import hash from "object-hash";
 import ToggleButtonsMultiple from "../toggleButtonsMultiple/ToggleButtonsMultiple.component";
 import Password from "../../modules/Password";
-import { collection, addDoc, doc, setDoc, updateDoc } from "firebase/firestore";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";
 import { useDispatch, useSelector } from "react-redux";
 import { accountChangedRenderAction, editAccountAction } from "../../store/actions/actions";
@@ -330,10 +330,11 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
               className="submit-button"
               type="button"
               onClick={createAccount}
+              disabled={!isValidAccount || output.length === 0}
             >
               Submit
             </button>
-            {isValidAccount ? <FcUnlock className="lock-icon"/> : <FcLock className="lock-icon"/>}
+            {isValidAccount && output.length > 0 ? <FcUnlock className="lock-icon"/> : <FcLock className="lock-icon"/>}
           </div>
         </form>
       </div>

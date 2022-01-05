@@ -10,7 +10,7 @@ export default function LandingPage() {
 
     useEffect(() => {
         dispatch(loggedInUserAction({}));
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="Landing-page">
