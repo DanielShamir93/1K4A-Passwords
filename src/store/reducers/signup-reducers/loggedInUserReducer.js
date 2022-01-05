@@ -1,9 +1,9 @@
-import { LOGGED_IN_USER } from '../../actions/actionsTypes';
+import { LOGGED_IN_USER } from "../../actions/actionsTypes";
 
 const loggedInUserReducer = (state = {}, action) => {
   switch (action.type) {
     case LOGGED_IN_USER:
-      return action.payload ;
+      return action.payload;
     default:
       return state;
   }

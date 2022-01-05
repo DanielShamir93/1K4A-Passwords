@@ -1,4 +1,4 @@
-import { IS_AUTH } from '../../actions/actionsTypes';
+import { IS_AUTH } from "../../actions/actionsTypes";
 
 const isAuthReducer = (state = false, action) => {
   switch (action.type) {

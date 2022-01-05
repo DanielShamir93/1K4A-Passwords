@@ -1,7 +1,5 @@
 @media (max-width: 768px) {
-    :root {
-        overflow: auto;
-    }
+  :root {
+    overflow: auto;
+  }
 }
-
-

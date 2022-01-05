@@ -1,9 +1,9 @@
-import { SET_CONFIRM } from '../../actions/actionsTypes';
+import { SET_CONFIRM } from "../../actions/actionsTypes";
 
-const confirmReducer = (state = '', action) => {
+const confirmReducer = (state = "", action) => {
   switch (action.type) {
     case SET_CONFIRM:
-      return action.payload ;
+      return action.payload;
     default:
       return state;
   }

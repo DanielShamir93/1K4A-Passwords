@@ -8,9 +8,15 @@ import Password from "../../modules/Password";
 import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";
 import { useDispatch, useSelector } from "react-redux";
-import { accountChangedRenderAction, editAccountAction } from "../../store/actions/actions";
+import {
+  accountChangedRenderAction,
+  editAccountAction,
+} from "../../store/actions/actions";
 
-export default function CreateAccount({ toggleCreateAccountComponent, setIsLoading }) {
+export default function CreateAccount({
+  toggleCreateAccountComponent,
+  setIsLoading,
+}) {
   const dispatch = useDispatch();
   const [output, setOutput] = useState("");
   const [accountName, setAccountName] = useState("");
@@ -33,8 +39,8 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
   const statesObject = useSelector((state) => {
     return {
       editAccount: state.editAccount,
-      loggedInUser: state.loggedInUser
-    }
+      loggedInUser: state.loggedInUser,
+    };
   });
 
   useEffect(() => {
@@ -53,15 +59,13 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
         isDigitsChecked: statesObject.editAccount.isPassHasDigit,
         isUppercaseChecked: statesObject.editAccount.isPassHasUppercase,
         isLowercaseChecked: statesObject.editAccount.isPassHasLowercase,
-        isSymbolsChecked: statesObject.editAccount.isPassHasSymbol
-      })
+        isSymbolsChecked: statesObject.editAccount.isPassHasSymbol,
+      });
     }
-    console.log("useEffect from createAccount");
 
-    return (() => {
+    return () => {
       dispatch(editAccountAction({}));
-    })
-
+    };
   }, [statesObject.editAccount, dispatch]);
 
   const createAccount = async () => {
@@ -86,15 +90,27 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
 
         if (Object.keys(statesObject.editAccount).length > 0) {
           // In edit account mode
-          await setDoc(doc(db, "users", statesObject.loggedInUser.uid, "accounts", statesObject.editAccount.id), currAccount);
+          await setDoc(
+            doc(
+              db,
+              "users",
+              statesObject.loggedInUser.uid,
+              "accounts",
+              statesObject.editAccount.id
+            ),
+            currAccount
+          );
         } else {
-          await addDoc(collection(db, "users", statesObject.loggedInUser.uid, "accounts"), currAccount);
+          await addDoc(
+            collection(db, "users", statesObject.loggedInUser.uid, "accounts"),
+            currAccount
+          );
         }
         dispatch(accountChangedRenderAction());
         resetCreateAccountForm();
         toggleCreateAccountComponent(false);
       } else {
-        setOutput("Must Generate Password")
+        setOutput("Must Generate Password");
       }
     } catch (err) {
       console.log(err.massage);
@@ -180,14 +196,14 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
     if (isNaturalNumber(lengthInputElement.value)) {
       setPassLength(lengthInputElement.value);
     } else {
-      lengthInputElement.value = parseInt(lengthInputElement.value) || '';
-        setPassLength(lengthInputElement.value);
+      lengthInputElement.value = parseInt(lengthInputElement.value) || "";
+      setPassLength(lengthInputElement.value);
     }
-  } 
+  };
 
   const isNaturalNumber = (string) => {
     return /^\d+$(?![^\d])/.test(string);
-  }
+  };
 
   return (
     <div className="CreateAccount">
@@ -309,7 +325,7 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
                   }}
                   value={privateKey}
                 />
-                <FcKey className="private-key-icon"/>
+                <FcKey className="private-key-icon" />
               </div>
               <button
                 className="generate-button"
@@ -338,7 +354,11 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
             >
               Submit
             </button>
-            {isValidAccount && output.length > 0 ? <FcUnlock className="lock-icon"/> : <FcLock className="lock-icon"/>}
+            {isValidAccount && output.length > 0 ? (
+              <FcUnlock className="lock-icon" />
+            ) : (
+              <FcLock className="lock-icon" />
+            )}
           </div>
         </form>
       </div>

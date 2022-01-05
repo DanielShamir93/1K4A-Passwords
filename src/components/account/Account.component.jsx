@@ -8,16 +8,25 @@ import Password from "../../modules/Password";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";
 import { useDispatch, useSelector } from "react-redux";
-import { accountChangedRenderAction, editAccountAction } from "../../store/actions/actions";
+import {
+  accountChangedRenderAction,
+  editAccountAction,
+} from "../../store/actions/actions";
 import { collection } from "firebase/firestore";
 
-export default function Account({ account, setIsLoading, toggleCreateAccountComponent }) {
+export default function Account({
+  account,
+  setIsLoading,
+  toggleCreateAccountComponent,
+}) {
   const dispatch = useDispatch();
   const toggleRef = useRef();
   const [privateKey, setPrivateKey] = useState("");
   const [output, setOutput] = useState("");
   const [isMoreDisplayed, setIsMoreDisplayed] = useState(false);
-  const statesObject = useSelector((state) => { return { loggedInUser: state.loggedInUser } })
+  const statesObject = useSelector((state) => {
+    return { loggedInUser: state.loggedInUser };
+  });
 
   const toggleDisplay = () => {
     if (!isMoreDisplayed) {
@@ -61,21 +70,26 @@ export default function Account({ account, setIsLoading, toggleCreateAccountComp
   const deleteAccount = async () => {
     try {
       setIsLoading(true);
-      await deleteDoc(doc(collection(db, "users", statesObject.loggedInUser.uid, "accounts"), account.id));
+      await deleteDoc(
+        doc(
+          collection(db, "users", statesObject.loggedInUser.uid, "accounts"),
+          account.id
+        )
+      );
       dispatch(accountChangedRenderAction());
-    } catch(err) {
+    } catch (err) {
       console.log(err.message);
     }
-  }
+  };
 
   const editAccount = () => {
     dispatch(editAccountAction(account));
     toggleCreateAccountComponent(true);
-  }
+  };
 
   const copyPassword = () => {
-    navigator.clipboard.writeText(output)
-  }
+    navigator.clipboard.writeText(output);
+  };
 
   return (
     <div className="account">
@@ -85,11 +99,19 @@ export default function Account({ account, setIsLoading, toggleCreateAccountComp
       </div>
       <div ref={toggleRef} className="account-more">
         <div className="account-more-bar">
-          <AiOutlineDelete className="delete-account-button" onClick={deleteAccount}/>
-          <AiOutlineEdit className="edit-account-button" onClick={editAccount} />
+          <AiOutlineDelete
+            className="delete-account-button"
+            onClick={deleteAccount}
+          />
+          <AiOutlineEdit
+            className="edit-account-button"
+            onClick={editAccount}
+          />
         </div>
         <div className="private-key">
-          <label htmlFor="private-key-input"><FcKey className="private-key-icon"/></label>
+          <label htmlFor="private-key-input">
+            <FcKey className="private-key-icon" />
+          </label>
           <input
             className="private-key-input"
             id="private-key-input"
@@ -101,7 +123,11 @@ export default function Account({ account, setIsLoading, toggleCreateAccountComp
             value={privateKey}
           />
         </div>
-        {privateKey.length > 0 ? <FcUnlock className="get-password-button" onClick={getPassword} /> : <FcLock className="get-password-button" onClick={getPassword} />}
+        {privateKey.length > 0 ? (
+          <FcUnlock className="get-password-button" onClick={getPassword} />
+        ) : (
+          <FcLock className="get-password-button" onClick={getPassword} />
+        )}
         <div className="output">
           <input
             className="output-input"
@@ -116,4 +142,3 @@ export default function Account({ account, setIsLoading, toggleCreateAccountComp
     </div>
   );
 }
-

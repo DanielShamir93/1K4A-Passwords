@@ -1,9 +1,9 @@
-import { SET_EMAIL } from '../../actions/actionsTypes';
+import { SET_EMAIL } from "../../actions/actionsTypes";
 
-const emailReducer = (state = '', action) => {
+const emailReducer = (state = "", action) => {
   switch (action.type) {
     case SET_EMAIL:
-      return action.payload ;
+      return action.payload;
     default:
       return state;
   }

@@ -2,7 +2,7 @@
 
 ## An app for creating and recovering passwords without saving the passwords in any database.
 
-Over the years we have all signed up for many sites and a large percentage of them we have forgotten their password and now we want to connect to them, Or maybe we kept the passwords on a database in a remote place that we have no idea who is responsible for our security, or maybe in a good condition we keep the passwords in a notebook. 
+Over the years we have all signed up for many sites and a large percentage of them we have forgotten their password and now we want to connect to them, or maybe we kept the passwords on a database in a remote place that we have no idea who is responsible for our security, or maybe in a good condition we keep the passwords in a notebook. 
 
 ### 1K4A-Passwords will solves those problems for you! 
 

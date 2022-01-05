@@ -1,9 +1,9 @@
-import { SET_PASSWORD } from '../../actions/actionsTypes';
+import { SET_PASSWORD } from "../../actions/actionsTypes";
 
-const passwordReducer = (state = '', action) => {
+const passwordReducer = (state = "", action) => {
   switch (action.type) {
     case SET_PASSWORD:
-      return action.payload ;
+      return action.payload;
     default:
       return state;
   }

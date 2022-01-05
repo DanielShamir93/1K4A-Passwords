@@ -18,20 +18,21 @@ const Home = () => {
   const statesObject = useSelector((state) => {
     return {
       accountChangedRender: state.accountChangedRender,
-      loggedInUser: state.loggedInUser
-    }
-  })
+      loggedInUser: state.loggedInUser,
+    };
+  });
 
   useEffect(() => {
     const getAccounts = async () => {
       try {
         setIsLoading(true);
-        const { docs } = await getDocs(collection(db, "users", statesObject.loggedInUser.uid, "accounts"));
+        const { docs } = await getDocs(
+          collection(db, "users", statesObject.loggedInUser.uid, "accounts")
+        );
         setAccounts(docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        console.log('Home useEffect');
       } catch (err) {
         console.log(err.message);
-      };
+      }
       setIsLoading(false);
     };
     getAccounts();
@@ -39,12 +40,17 @@ const Home = () => {
 
   const toggleCreateAccountComponent = (boolean) => {
     setIsCreateAccountOpen(boolean);
-  }
+  };
 
   const renderAccounts = () => {
     return accounts.map((account) => {
       return (
-        <Account key={account.id} account={account} setIsLoading={setIsLoading} toggleCreateAccountComponent={toggleCreateAccountComponent} />
+        <Account
+          key={account.id}
+          account={account}
+          setIsLoading={setIsLoading}
+          toggleCreateAccountComponent={toggleCreateAccountComponent}
+        />
       );
     });
   };
@@ -53,7 +59,8 @@ const Home = () => {
     <div className="Home">
       <div className="home-layout">
         <div className="toolbar">
-          {!isLoading && <div>
+          {!isLoading && (
+            <div>
               {isCreateAccountOpen ? (
                 <HiMinusCircle
                   className="create-account-icon"
@@ -69,12 +76,17 @@ const Home = () => {
                   }}
                 />
               )}
-            </div>}
+            </div>
+          )}
         </div>
         <div className="accounts-gallery">{renderAccounts()}</div>
       </div>
       {isCreateAccountOpen && (
-        <CreateAccount toggleCreateAccountComponent={toggleCreateAccountComponent} isLoading={isLoading} setIsLoading={setIsLoading} />
+        <CreateAccount
+          toggleCreateAccountComponent={toggleCreateAccountComponent}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+        />
       )}
       {isLoading && <Spinner />}
     </div>

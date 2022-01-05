@@ -1,4 +1,4 @@
-import { ACCOUNT_CHANGED_RENDER } from '../actions/actionsTypes';
+import { ACCOUNT_CHANGED_RENDER } from "../actions/actionsTypes";
 
 const accountChangedRenderReducer = (state = false, action) => {
   switch (action.type) {
