@@ -1,4 +1,5 @@
 import "./create-account.styles.scss";
+import "./create-account.styles.mobile.scss";
 import { FcUnlock, FcLock, FcKey } from "react-icons/fc";
 import { useState, useEffect } from "react";
 import hash from "object-hash";
@@ -301,7 +302,7 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
                   }}
                   value={privateKey}
                 />
-                <FcKey />
+                <FcKey className="private-key-icon"/>
               </div>
               <button
                 className="generate-button"

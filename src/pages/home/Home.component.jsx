@@ -7,6 +7,7 @@ import { db } from "../../firebase/firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 import Account from "../../components/account/Account.component";
 import "./home.styles.scss";
+import "./home.styles.mobile.scss";
 import { useSelector } from "react-redux";
 import Spinner from "../../components/spinner/Spinner.component";
 

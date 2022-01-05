@@ -3,6 +3,7 @@ import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { FcUnlock, FcLock, FcKey } from "react-icons/fc";
 import { useRef, useState } from "react";
 import "./account.styles.scss";
+import "./account.styles.mobile.scss";
 import Password from "../../modules/Password";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";

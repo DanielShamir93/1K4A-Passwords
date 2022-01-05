@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import "./toggle-buttons-multiple.styles.scss";
+import "./toggle-buttons-multiple.styles.mobile.scss";
 
 export default function ToggleButtonsMultiple({ isChecked, setCheckbox }) {
 
