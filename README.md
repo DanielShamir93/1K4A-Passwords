@@ -1,8 +1,11 @@
-# <img src="src/assets/images/title_logo.png" width="48"> 1K4A-Passwords
+# <img src="src/assets/images/title_logo.png" width="40"> One Key For All Passwords
 
 An app for creating and recovering passwords without saving the passwords in any database.
 
 ![](src/assets/images/landing-page.png)
+
+
+![](src/assets/images/home-page.png)
 
 ## :technologist: Languages
 
@@ -26,5 +29,3 @@ An app for creating and recovering passwords without saving the passwords in any
 ## :beers: Recognition 
 
 A great thanks for Appleseeds bootcamp!
-
-![](src/assets/images/home-page.png)
