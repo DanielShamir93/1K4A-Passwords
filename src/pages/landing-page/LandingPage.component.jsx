@@ -1,5 +1,7 @@
-import Signup from "../signup/Signup.component";
+import Signup from "../../components/signup/Signup.component";
 import "./landing-page.styles.scss";
+import "./landing-page.styles.mobile.scss";
+
 
 export default function LandingPage() {
     return (

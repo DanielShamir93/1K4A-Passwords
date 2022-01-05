@@ -1,5 +1,6 @@
 import IconedButton from "../iconedButton/IconedButton.component";
 import "./navbar.styles.scss";
+import "./navbar.styles.mobile.scss";
 import { FiInfo, FiLogIn } from "react-icons/fi";
 import { AiOutlineQuestionCircle, AiOutlineHome } from "react-icons/ai";
 import { Link } from 'react-router-dom';
@@ -30,7 +31,7 @@ export default function Navbar() {
                 <figure className="logo"></figure>
                 <Link to="/home">
                     <IconedButton
-                        reactIconComponent={<AiOutlineHome className="react-icon" style={{fontSize: "4vmin"}} />} 
+                        reactIconComponent={<AiOutlineHome className="react-home-icon" />} 
                     />
                 </Link>
             </div>

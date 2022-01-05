@@ -9,7 +9,6 @@ import { db } from "../../firebase/firebase-config";
 import { useDispatch, useSelector } from "react-redux";
 import { accountChangedRenderAction, editAccountAction } from "../../store/actions/actions";
 
-
 export default function CreateAccount({ toggleCreateAccountComponent, setIsLoading }) {
   const dispatch = useDispatch();
   const [output, setOutput] = useState("");

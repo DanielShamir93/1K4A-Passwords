@@ -17,7 +17,7 @@ export default function TextFieldInput(props) {
   };
 
   return (
-    <FormControl sx={{m: 1, width: '40vw', maxWidth: '500px' }} variant="outlined">
+    <FormControl sx={{m: 1, width: '60vw', maxWidth: '500px' }} variant="outlined">
       <TextField 
         label={props.label} 
         onChange={(e) => {handleChange(e)}}

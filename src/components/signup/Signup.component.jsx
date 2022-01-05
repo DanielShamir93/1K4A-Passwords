@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import BasicButton from '../../components/mui/BasicButton.component';
 import UnderlineLink from '../../components/mui/UnderlineLink.component';
 import './signup.styles.scss';
+import './signup.styles.mobile.scss';
 import { useDispatch } from "react-redux";
 import { isAuthAction } from "../../store/actions/actions";
 import Spinner from "../../components/spinner/Spinner.component";
