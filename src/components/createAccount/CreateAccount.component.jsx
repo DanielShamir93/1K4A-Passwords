@@ -235,6 +235,7 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
                     setOutput("");
                   }}
                   value={passLength}
+                  disabled={passPattern.length > 0}
                 />
               </div>
               <div className="password-edges">
@@ -247,6 +248,7 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
                       setOutput("");
                     }}
                     value={passStartsWith}
+                    disabled={passPattern.length > 0}
                   />
                 </div>
                 <div>
@@ -258,6 +260,7 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
                       setOutput("");
                     }}
                     value={passEndsWith}
+                    disabled={passPattern.length > 0}
                   />
                 </div>
               </div>
@@ -282,6 +285,7 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
                     setOutput("");
                   }}
                   value={passAvoidChars}
+                  disabled={passPattern.length > 0}
                 />
               </div>
               <div>
@@ -297,7 +301,7 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
               </div>
               <div className="private-key">
                 <input
-                  type="text"
+                  type="password"
                   placeholder="Private Key"
                   onChange={(e) => {
                     setPrivateKey(e.target.value);
