@@ -7,8 +7,9 @@ import "./account.styles.mobile.scss";
 import Password from "../../modules/Password";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { accountChangedRenderAction, editAccountAction } from "../../store/actions/actions";
+import { collection } from "firebase/firestore";
 
 export default function Account({ account, setIsLoading, toggleCreateAccountComponent }) {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export default function Account({ account, setIsLoading, toggleCreateAccountComp
   const [privateKey, setPrivateKey] = useState("");
   const [output, setOutput] = useState("");
   const [isMoreDisplayed, setIsMoreDisplayed] = useState(false);
+  const statesObject = useSelector((state) => { return { loggedInUser: state.loggedInUser } })
 
   const toggleDisplay = () => {
     if (!isMoreDisplayed) {
@@ -59,7 +61,7 @@ export default function Account({ account, setIsLoading, toggleCreateAccountComp
   const deleteAccount = async () => {
     try {
       setIsLoading(true);
-      await deleteDoc(doc(db, "accounts", account.id));
+      await deleteDoc(doc(collection(db, "users", statesObject.loggedInUser.uid, "accounts"), account.id));
       dispatch(accountChangedRenderAction());
     } catch(err) {
       console.log(err.message);

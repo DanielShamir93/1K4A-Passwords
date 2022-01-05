@@ -1,9 +1,17 @@
+import { useEffect } from "react";
 import Signup from "../../components/signup/Signup.component";
 import "./landing-page.styles.scss";
 import "./landing-page.styles.mobile.scss";
-
+import { useDispatch } from "react-redux";
+import { loggedInUserAction } from "../../store/actions/actions";
 
 export default function LandingPage() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(loggedInUserAction({}));
+    }, []);
+
     return (
         <div className="Landing-page">
             <div className="landing-page-left">

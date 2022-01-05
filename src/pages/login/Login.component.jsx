@@ -8,7 +8,7 @@ import TextFieldInput from '../../components/mui/TextFieldInput.component';
 import { useSelector } from 'react-redux';
 import BasicButton from '../../components/mui/BasicButton.component';
 import { useDispatch } from "react-redux";
-import { isAuthAction } from "../../store/actions/actions";
+import { isAuthAction, loggedInUserAction } from "../../store/actions/actions";
 import Spinner from "../../components/spinner/Spinner.component";
 import './login.styles.scss';
 
@@ -22,6 +22,7 @@ export default function Login() {
             email: state.email,
             password: state.password,
             confirm: state.confirm,
+            loggedInUser: state.loggedInUser
         };
     });
 
@@ -29,8 +30,9 @@ export default function Login() {
         try {
             setIsLoading(true);
             isValidInput();
-            await signInWithEmailAndPassword(auth, statesObject.email, statesObject.password);
+            const { user } = await signInWithEmailAndPassword(auth, statesObject.email, statesObject.password);
             dispatch(isAuthAction(true));
+            dispatch(loggedInUserAction(user));
             history.push('/home');
         } catch (err) {
             setComment(err.message);

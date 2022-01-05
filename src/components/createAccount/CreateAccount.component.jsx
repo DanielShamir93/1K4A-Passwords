@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import hash from "object-hash";
 import ToggleButtonsMultiple from "../toggleButtonsMultiple/ToggleButtonsMultiple.component";
 import Password from "../../modules/Password";
-import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { collection, addDoc, doc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";
 import { useDispatch, useSelector } from "react-redux";
 import { accountChangedRenderAction, editAccountAction } from "../../store/actions/actions";
@@ -31,7 +31,10 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
     isSymbolsChecked: true,
   });
   const statesObject = useSelector((state) => {
-    return {editAccount: state.editAccount}
+    return {
+      editAccount: state.editAccount,
+      loggedInUser: state.loggedInUser
+    }
   });
 
   useEffect(() => {
@@ -83,9 +86,9 @@ export default function CreateAccount({ toggleCreateAccountComponent, setIsLoadi
 
         if (Object.keys(statesObject.editAccount).length > 0) {
           // In edit account mode
-          await setDoc(doc(db, "accounts", statesObject.editAccount.id), currAccount);
+          await setDoc(doc(db, "users", statesObject.loggedInUser.uid, "accounts", statesObject.editAccount.id), currAccount);
         } else {
-          await addDoc(collection(db, "accounts"), currAccount);
+          await addDoc(collection(db, "users", statesObject.loggedInUser.uid, "accounts"), currAccount);
         }
         dispatch(accountChangedRenderAction());
         resetCreateAccountForm();

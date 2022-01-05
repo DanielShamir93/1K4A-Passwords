@@ -11,7 +11,7 @@ import UnderlineLink from '../../components/mui/UnderlineLink.component';
 import './signup.styles.scss';
 import './signup.styles.mobile.scss';
 import { useDispatch } from "react-redux";
-import { isAuthAction } from "../../store/actions/actions";
+import { isAuthAction, loggedInUserAction } from "../../store/actions/actions";
 import Spinner from "../../components/spinner/Spinner.component";
 
 export default function Signup() {
@@ -23,7 +23,8 @@ export default function Signup() {
         return {
             email: state.email,
             password: state.password,
-            confirm: state.confirm
+            confirm: state.confirm,
+            loggedInUser: state.loggedInUser
         };
     });
 
@@ -35,8 +36,9 @@ export default function Signup() {
         try {
             setIsLoading(true);
             isValidInput();
-            await createUserWithEmailAndPassword(auth, statesObject.email, statesObject.password);
+            const { user } = await createUserWithEmailAndPassword(auth, statesObject.email, statesObject.password);
             dispatch(isAuthAction(true));
+            dispatch(loggedInUserAction(user));
             history.push('/home');
         } catch (err) {
             setComment(err.message);

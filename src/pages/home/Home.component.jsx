@@ -16,14 +16,17 @@ const Home = () => {
   const [isCreateAccountOpen, setIsCreateAccountOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const statesObject = useSelector((state) => {
-    return {accountChangedRender: state.accountChangedRender}
+    return {
+      accountChangedRender: state.accountChangedRender,
+      loggedInUser: state.loggedInUser
+    }
   })
 
   useEffect(() => {
     const getAccounts = async () => {
       try {
         setIsLoading(true);
-        const { docs } = await getDocs(collection(db, "accounts"))
+        const { docs } = await getDocs(collection(db, "users", statesObject.loggedInUser.uid, "accounts"));
         setAccounts(docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         console.log('Home useEffect');
       } catch (err) {
@@ -32,7 +35,7 @@ const Home = () => {
       setIsLoading(false);
     };
     getAccounts();
-  }, [statesObject.accountChangedRender]);
+  }, [statesObject.accountChangedRender, statesObject.loggedInUser.uid]);
 
   const toggleCreateAccountComponent = (boolean) => {
     setIsCreateAccountOpen(boolean);
