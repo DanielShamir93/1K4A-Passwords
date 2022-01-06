@@ -3,15 +3,15 @@ import "./create-account.styles.mobile.scss";
 import { FcUnlock, FcLock, FcKey } from "react-icons/fc";
 import { useState, useEffect } from "react";
 import hash from "object-hash";
-import ToggleButtonsMultiple from "../toggleButtonsMultiple/ToggleButtonsMultiple.component";
-import Password from "../../modules/Password";
+import ToggleButtonsMultiple from "../../../../components/toggleButtonsMultiple/ToggleButtonsMultiple.component";
+import Password from "../../../../modules/Password";
 import { collection, addDoc, doc, setDoc } from "firebase/firestore";
-import { db } from "../../firebase/firebase-config";
+import { db } from "../../../../firebase/firebase-config";
 import { useDispatch, useSelector } from "react-redux";
 import {
   accountChangedRenderAction,
   editAccountAction,
-} from "../../store/actions/actions";
+} from "../../../../store/actions/actions";
 
 export default function CreateAccount({
   toggleCreateAccountComponent,

@@ -4,14 +4,11 @@ import { FcUnlock, FcLock, FcKey } from "react-icons/fc";
 import { useRef, useState } from "react";
 import "./account.styles.scss";
 import "./account.styles.mobile.scss";
-import Password from "../../modules/Password";
+import Password from "../../../../modules/Password";
 import { doc, deleteDoc } from "firebase/firestore";
-import { db } from "../../firebase/firebase-config";
+import { db } from "../../../../firebase/firebase-config";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  accountChangedRenderAction,
-  editAccountAction,
-} from "../../store/actions/actions";
+import { accountChangedRenderAction, editAccountAction } from "../../../../store/actions/actions";
 import { collection } from "firebase/firestore";
 
 export default function Account({

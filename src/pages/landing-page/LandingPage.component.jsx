@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Signup from "../../components/signup/Signup.component";
+import Signup from "./components/signup/Signup.component";
 import "./landing-page.styles.scss";
 import "./landing-page.styles.mobile.scss";
 import { useDispatch } from "react-redux";
