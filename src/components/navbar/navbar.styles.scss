@@ -26,9 +26,21 @@
     .react-home-icon {
       font-size: 4vmin;
     }
+
+    .user-email {
+      font-size: 2vmin;
+      position: absolute;
+      right: 0;
+      top: 10vmin;
+      background: #b94444;
+      padding: 0.2vmin 1.5vmin;
+      border-radius: 0 0 0 2vmin;
+      box-shadow: 0 0.5vmin 0.7vmin black;
+    }
   }
 
   .rightside {
+    position: relative;
     margin-right: 1vmin;
   }
 }

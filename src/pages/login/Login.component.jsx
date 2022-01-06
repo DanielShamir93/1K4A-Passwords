@@ -20,9 +20,7 @@ export default function Login() {
   const statesObject = useSelector((state) => {
     return {
       email: state.email,
-      password: state.password,
-      confirm: state.confirm,
-      loggedInUser: state.loggedInUser,
+      password: state.password
     };
   });
 
@@ -36,7 +34,7 @@ export default function Login() {
         statesObject.password
       );
       dispatch(isAuthAction(true));
-      dispatch(loggedInUserAction(user));
+      dispatch(loggedInUserAction({ uid: user.uid, email: user.email }));
       history.push("/home");
     } catch (err) {
       setComment(err.message);

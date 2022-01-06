@@ -12,7 +12,10 @@ import { isAuthAction } from "../../store/actions/actions";
 export default function Navbar() {
   const dispatch = useDispatch();
   const statesObject = useSelector((state) => {
-    return { isAuth: state.isAuth };
+    return { 
+      isAuth: state.isAuth,
+      loggedInUser: state.loggedInUser
+    };
   });
 
   const logout = async () => {
@@ -33,6 +36,9 @@ export default function Navbar() {
             reactIconComponent={<AiOutlineHome className="react-home-icon" />}
           />
         </Link>
+        <div className="user-email">
+          {statesObject.loggedInUser.email}  
+        </div> 
       </div>
       <div className="rightside">
         <Link to={"/tutorial"}>
@@ -56,7 +62,7 @@ export default function Navbar() {
             term={statesObject.isAuth ? "Logout" : "Login"}
             reactIconComponent={<FiLogIn className="react-icon" />}
           />
-        </Link>
+        </Link>     
       </div>
     </div>
   );

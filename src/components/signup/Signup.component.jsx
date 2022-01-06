@@ -42,7 +42,7 @@ export default function Signup() {
         statesObject.password
       );
       dispatch(isAuthAction(true));
-      dispatch(loggedInUserAction(user));
+      dispatch(loggedInUserAction({ uid: user.uid, email: user.email }));
       history.push("/home");
     } catch (err) {
       setComment(err.message);
