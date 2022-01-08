@@ -29,22 +29,48 @@
         }
 
         .accounts-area {
-            display: flex;
-            flex-direction: column;
+            width: 95vw;
+            background: rgb(246, 242, 242);
 
+            .accounts-top-toolbar {
+                border-bottom: 0.5vmin rgba(0, 0, 0, 0.1) solid;
+                display: flex;
+                justify-content: center;
+                
+                .search-account {
+                    position: relative;
+                    width: fit-content;
+                    height: 8vh;
+                    padding: 1.5vmin 0;
+                    display: flex;
+                    align-items: center;
+                    
+                    &-input {
+                        text-align: center;
+                        width: 30vmin;
+                        font-size: 3vmin;
+                        border-right: none;
+                        padding-right: 4vmin;
+                    }
+    
+                    &-react-icon {
+                        font-size: 3vmin;
+                        position: absolute;
+                        right: 0.5vmin;
+                    }
+                }
+            }
+    
             .accounts-gallery {
-                background: rgb(246, 242, 242);
-                padding: 8vmin 5vmin;
+                padding: 5vmin;
                 display: flex;
                 align-items: flex-start;
                 align-content: flex-start;
                 flex-wrap: wrap;
                 gap: 2vmin;
-                width: 95vw;
-                height: 90vh;
+                height: 82vh;
             }
+            
         }
-        
-        
     }
 }

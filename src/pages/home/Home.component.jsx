@@ -1,5 +1,5 @@
 import { withRouter } from "react-router-dom";
-import { FcPlus } from "react-icons/fc";
+import { FcPlus, FcSearch } from "react-icons/fc";
 import { HiMinusCircle } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import CreateAccount from "./components/createAccount/CreateAccount.component";
@@ -15,6 +15,7 @@ const Home = () => {
   const [accounts, setAccounts] = useState([]);
   const [isCreateAccountOpen, setIsCreateAccountOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [filterAccounts, setFilterAccounts] = useState("");
   const statesObject = useSelector((state) => {
     return {
       accountChangedRender: state.accountChangedRender,
@@ -43,16 +44,20 @@ const Home = () => {
   };
 
   const renderAccounts = () => {
-    return accounts.map((account) => {
-      return (
-        <Account
-          key={account.id}
-          account={account}
-          setIsLoading={setIsLoading}
-          toggleCreateAccountComponent={toggleCreateAccountComponent}
-        />
-      );
-    });
+    return accounts
+      .filter((account) =>
+        account.accountName.toLowerCase().includes(filterAccounts.toLowerCase())
+      )
+      .map((account) => {
+        return (
+          <Account
+            key={account.id}
+            account={account}
+            setIsLoading={setIsLoading}
+            toggleCreateAccountComponent={toggleCreateAccountComponent}
+          />
+        );
+      });
   };
 
   return (
@@ -80,10 +85,21 @@ const Home = () => {
           )}
         </div>
         <div className="accounts-area">
-          <input className="search-account" type="text" />
-          <div className="accounts-gallery">
-            {renderAccounts()}
+          <div className="accounts-top-toolbar">
+            <div className="search-account">
+              <input
+                className="search-account-input"
+                type="text"
+                placeholder="Search"
+                onChange={(e) => {
+                  setFilterAccounts(e.target.value);
+                }}
+                value={filterAccounts}
+              />
+              <FcSearch className="search-account-react-icon"/>
+            </div>
           </div>
+          <div className="accounts-gallery">{renderAccounts()}</div>
         </div>
       </div>
       {isCreateAccountOpen && (
