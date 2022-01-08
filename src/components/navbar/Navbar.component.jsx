@@ -36,9 +36,11 @@ export default function Navbar() {
             reactIconComponent={<AiOutlineHome className="react-home-icon" />}
           />
         </Link>
-        <div className="user-email">
+        { statesObject.isAuth &&
+          <div className="user-email">
           {statesObject.loggedInUser.email}  
-        </div> 
+          </div> 
+        }
       </div>
       <div className="rightside">
         <Link to={"/tutorial"}>
