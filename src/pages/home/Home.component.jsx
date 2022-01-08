@@ -79,7 +79,12 @@ const Home = () => {
             </div>
           )}
         </div>
-        <div className="accounts-gallery">{renderAccounts()}</div>
+        <div className="accounts-area">
+          <input className="search-account" type="text" />
+          <div className="accounts-gallery">
+            {renderAccounts()}
+          </div>
+        </div>
       </div>
       {isCreateAccountOpen && (
         <CreateAccount

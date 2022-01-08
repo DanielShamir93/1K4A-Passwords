@@ -27,17 +27,24 @@
                 font-size: 6vmin;
             }
         }
-        
-        .accounts-gallery {
-            background: rgb(246, 242, 242);
-            padding: 8vmin 5vmin;
+
+        .accounts-area {
             display: flex;
-            align-items: flex-start;
-            align-content: flex-start;
-            flex-wrap: wrap;
-            gap: 2vmin;
-            width: 95vw;
-            height: 90vh;
+            flex-direction: column;
+
+            .accounts-gallery {
+                background: rgb(246, 242, 242);
+                padding: 8vmin 5vmin;
+                display: flex;
+                align-items: flex-start;
+                align-content: flex-start;
+                flex-wrap: wrap;
+                gap: 2vmin;
+                width: 95vw;
+                height: 90vh;
+            }
         }
+        
+        
     }
 }
